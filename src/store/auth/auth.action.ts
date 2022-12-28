@@ -7,14 +7,18 @@ export const enum AUTH_ACTION {
 }
 
 
-const loginAction = createAsyncThunk<LoginAuthenticateResponse, LoginParams>(AUTH_ACTION.LOGIN, async (params) => {
+const loginAction = createAsyncThunk<LoginAuthenticateResponse,LoginParams>(AUTH_ACTION.LOGIN, async (params) => {
     try {
         const response = await AuthService.loginMethod(params);
-        if (response.id && response.username) {
-            AuthService.setUser(response.id, response.username);
+        if (response.id && response.email && response.role) {
+            AuthService.setUser(response.id, response.email,response.role);
+        }
+        if (response.token){
+            AuthService.setAccessToken(response.token);
+            return response;
         }
         return {
-            isAuth: true,
+            isAuth: false,
         }
     } catch (e: any) {
         return {
@@ -22,7 +26,6 @@ const loginAction = createAsyncThunk<LoginAuthenticateResponse, LoginParams>(AUT
         }
     }
 });
-
 
 export const AuthActions = {
     loginAction,

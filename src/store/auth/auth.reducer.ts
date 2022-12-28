@@ -23,7 +23,7 @@ export const authReducer = createReducer(initialState, (builder) => {
         return {
             ...state,
             isAuth: action.payload.isAuth,
-            username: "pipppo",
+            email: action.payload.email,
             id: action.payload.id,
             isError:false,
             isLoading:false,
@@ -34,7 +34,7 @@ export const authReducer = createReducer(initialState, (builder) => {
     builder.addCase(AuthActions.loginAction.rejected, (state, action) => {
         return {
             ...state,
-            username:undefined,
+            email:undefined,
             id:undefined,
             isAuth: false,
             isError:false,

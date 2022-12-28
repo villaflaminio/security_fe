@@ -7,7 +7,6 @@ import {useForm, Resolver, SubmitHandler} from 'react-hook-form';
 import {useAppDispatch, useAppSelector} from "../../store/store.config";
 import {LoginAuthenticateResponse, LoginParams} from "../../store/auth/types";
 import {AuthActions} from "../../store/auth/auth.action";
-import {AuthService} from "../../service/auth.service";
 
 
 function Login() {
@@ -45,7 +44,7 @@ function Login() {
                 {/*form login email password*/}
                 <form className="form-item" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-item">
-                        <input className="form-control" type="email" placeholder="Email" {...register("username", {})} />
+                        <input className="form-control" type="email" placeholder="Email" {...register("email", {})} />
                     </div>
                     <div className="form-item">
                         <input className="form-control" type="password"
