@@ -11,7 +11,6 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
             {email: params.email, password: params.password}
         );
 
-        console.log('Request [loginRequest] ', response.data);
         if (response && response.data && response.data.token) {
             AuthService.setAccessToken(response.data.token);
             AuthService.setRefreshToken(response.data.refreshToken);

@@ -7,6 +7,7 @@ import {useForm, Resolver, SubmitHandler} from 'react-hook-form';
 import {useAppDispatch, useAppSelector} from "../../store/store.config";
 import {LoginAuthenticateResponse, LoginParams} from "../../store/auth/types";
 import {AuthActions} from "../../store/auth/auth.action";
+import TestGrants from "./TestGrants";
 
 
 function Login() {
@@ -15,9 +16,9 @@ function Login() {
     const dispatch = useAppDispatch();
     const user = useAppSelector(state => state.authReducer.id);
 
-    useEffect(()=>{
-        console.log("aaaaaoo",user);
-    },[user])
+    // useEffect(()=>{
+    //     console.log("aaaaaoo",user);
+    // },[user])
 
     const handleLogin = async (params: LoginParams) => {
         await dispatch(AuthActions.loginAction(params)).then((responseData) => {
@@ -25,7 +26,7 @@ function Login() {
             if (!response.isAuth) {
                 console.log('errore durante il login');
             }else{
-                console.log("Login effettuato con successo")
+                console.log("Login effettuato con successo" , response);
             }
 
         })
@@ -55,6 +56,11 @@ function Login() {
                     </div>
                 </form>
                 {/*<span className="signup-link">New user? <Link to="/signup">Sign up!</Link></span>*/}
+            </div>
+
+            <div>
+                <h1>Login effettuato con successo</h1>
+                <TestGrants/>
             </div>
         </div>
 
