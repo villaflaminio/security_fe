@@ -4,6 +4,9 @@ import './style/Button.css';
 import './style/Form.css';
 
 import {useForm, Resolver, SubmitHandler} from 'react-hook-form';
+import {useAppDispatch} from "../../store/store.config";
+import {LoginAuthenticateResponse, LoginParams} from "../../store/auth/types";
+import {AuthActions} from "../../store/auth/auth.action";
 
 type FormValues = {
     email: string;
@@ -13,6 +16,20 @@ type FormValues = {
 function Login() {
     const {register, handleSubmit} = useForm<FormValues>();
     const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
+    const dispatch = useAppDispatch();
+
+    const handleLogin = async (params: LoginParams) => {
+        await dispatch(AuthActions.loginAction(params)).then((responseData) => {
+            const response = responseData.payload as LoginAuthenticateResponse
+            if (!response.isAuth) {
+                console.log('errore durante il login');
+            }else{
+                console.log("Login effettuato con successo")
+            }
+
+        })
+    }
+
     return (
         <div className="login-container">
             <div className="login-content">
