@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './style/Login.css';
 import './style/Button.css';
 import './style/Form.css';
@@ -52,7 +52,6 @@ function Login() {
                                placeholder="Password" {...register("password", {})} />
                     </div>
                     <div className="form-item">
-
                         <button type="submit" className="btn btn-block btn-primary">Login</button>
                     </div>
                 </form>
