@@ -18,22 +18,30 @@ const loginMethod = async (params: LoginParams):Promise<LoginAuthenticateRespons
     //         console.log('Request [loginRequest] admin role')
     //     }
     //
-    //     return {
-    //         isAuth: !!response.data.token,
-    //         token:response.data.token,
-    //         username: response.data.username,
-    //         id: response.data.id,
-    //         role: userRole,
-    //     }
+        return {
+            isAuth: true,
+            token: "token",
+            username: "username",
+            id: 0
+        }
     // }
-     throw new Error('Error during login')
 }
 const setUser = (id: number,username:string) => {
     localStorage.setItem('username', username);
     localStorage.setItem('id', `${id}`);
 }
+const getUser = ():{username?:string,id?:number} => {
+    const username = localStorage.getItem('username');
+    const id = localStorage.getItem('id');
+    const role = localStorage.getItem('role');
 
+    return {
+        username: username ?username:undefined,
+        id: id ? Number(id) : undefined,
+    }
+}
 export const AuthService = {
     loginMethod,
-    setUser
+    setUser,
+    getUser
 }

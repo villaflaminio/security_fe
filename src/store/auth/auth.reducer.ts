@@ -23,7 +23,7 @@ export const authReducer = createReducer(initialState, (builder) => {
         return {
             ...state,
             isAuth: action.payload.isAuth,
-            username: action.payload.username,
+            username: "pipppo",
             id: action.payload.id,
             isError:false,
             isLoading:false,

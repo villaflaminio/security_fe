@@ -4,19 +4,21 @@ import './style/Button.css';
 import './style/Form.css';
 
 import {useForm, Resolver, SubmitHandler} from 'react-hook-form';
-import {useAppDispatch} from "../../store/store.config";
+import {useAppDispatch, useAppSelector} from "../../store/store.config";
 import {LoginAuthenticateResponse, LoginParams} from "../../store/auth/types";
 import {AuthActions} from "../../store/auth/auth.action";
+import {AuthService} from "../../service/auth.service";
 
-type FormValues = {
-    email: string;
-    password: string;
-};
 
 function Login() {
-    const {register, handleSubmit} = useForm<FormValues>();
-    const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
+    const {register, handleSubmit} = useForm<LoginParams>();
+    const onSubmit: SubmitHandler<LoginParams> = data => handleLogin(data);
     const dispatch = useAppDispatch();
+    const user = useAppSelector(state => state.authReducer.id);
+
+    useEffect(()=>{
+        console.log("aaaaaoo",user);
+    },[user])
 
     const handleLogin = async (params: LoginParams) => {
         await dispatch(AuthActions.loginAction(params)).then((responseData) => {
@@ -43,7 +45,7 @@ function Login() {
                 {/*form login email password*/}
                 <form className="form-item" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-item">
-                        <input className="form-control" type="email" placeholder="Email" {...register("email", {})} />
+                        <input className="form-control" type="email" placeholder="Email" {...register("username", {})} />
                     </div>
                     <div className="form-item">
                         <input className="form-control" type="password"
