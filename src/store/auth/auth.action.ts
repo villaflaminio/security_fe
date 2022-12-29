@@ -30,17 +30,12 @@ const loginAction = createAsyncThunk<LoginAuthenticateResponse, LoginParams>(AUT
             isAuth: false,
         }
     } catch (e: any) {
-        const error = e as AxiosError
-
-        if (error.response && error.response.status === 400) {
-                    console.log('Error loginAction', error);
             thunkAPI.dispatch(uiManagerActions.showToast({
                 title: 'INVALID_CREDENTIALS',
                 description: 'invalid email or password',
                 status: "error",
                 duration: 5000
             }));
-        }
         return {
             isAuth: false,
         }

@@ -11,7 +11,7 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
     try {
         const response: AxiosResponse<LoginResponseDto> = await appAxios.post(`/api/auth/login`,
             {email: params.email, password: params.password}
-        );
+        ).catch((error: AxiosError) => { throw error; });
 
         if (response && response.data && response.data.token) {
             AuthService.setAccessToken(response.data.token);
@@ -34,7 +34,7 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
                 role: userRole,
             }
         }
-        throw new Error('Error during loginRequest')
+        throw new Error('Bad credentials')
     } catch (e) {
         throw e
     }
