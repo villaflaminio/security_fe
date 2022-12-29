@@ -1,4 +1,4 @@
-import {ToastPositionWithLogical} from '@chakra-ui/react'
+import {ToastPosition} from "@chakra-ui/toast/dist/toast.placement";
 export interface UiManagerState {
     toast?: ToastMessage;
 }
@@ -8,7 +8,7 @@ export interface ToastMessage {
     description: string;
     isI18nKey?: boolean;
     duration?: number;
-    position? : ToastPositionWithLogical,
+    position? : ToastPosition,
     status: ToastMessageStatus;
     isClosable?: boolean;
 }

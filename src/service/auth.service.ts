@@ -2,10 +2,12 @@ import {AxiosResponse} from 'axios';
 import {appAxios} from "./axios.config";
 import {LoginAuthenticateResponse, LoginParams, LoginResponseDto} from "../store/auth/types";
 import {UtenteRoleNames} from "../models/utente.model";
+import {AxiosError} from "axios/index";
+import {uiManagerActions} from "../store/uiManager/uiManager.action";
+import {useAppDispatch} from "../store/store.config";
 
 const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateResponse> => {
     console.log('Request [loginRequest] params:', params);
-
     try {
         const response: AxiosResponse<LoginResponseDto> = await appAxios.post(`/api/auth/login`,
             {email: params.email, password: params.password}
@@ -34,8 +36,7 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
         }
         throw new Error('Error during loginRequest')
     } catch (e) {
-        console.log('Request [loginRequest] error', e);
-        throw new Error('Error during login')
+        throw e
     }
 }
 

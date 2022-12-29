@@ -25,71 +25,71 @@ function TestGrants() {
             const response: AxiosResponse<LoginResponseDto> = await appAxios.get(`/api/user/testGrants`);
 
             if (response.status === 200) {
-                toast({
+                dispatch(uiManagerActions.showToast({
                     title: "Success",
-                    description: "You have the right to access this resource",
+                    description: "You have the USER right to access this resource",
                     status: "success",
                     duration: 3000,
                     isClosable: true,
-                })
+                }));
             }
         } catch (error) {
             const err = error as AxiosError
             console.log(err.response?.status)
-            toast({
+            dispatch(uiManagerActions.showToast({
                 title: "Error",
-                description: "You don't have the right to access this resource",
+                description: "You don't have the USER right to access this resource",
                 status: "error",
                 duration: 3000,
                 isClosable: true,
-            });
+            }));
 
         }
     }
 
-        const testAdminGrant = async (event: React.FormEvent) => {
-            event.preventDefault();
+    const testAdminGrant = async (event: React.FormEvent) => {
+        event.preventDefault();
 
-            try {
-                const response: AxiosResponse<LoginResponseDto> = await appAxios.get(`/api/admin/testGrants`);
+        try {
+            const response: AxiosResponse<LoginResponseDto> = await appAxios.get(`/api/admin/testGrants`);
 
-                if (response.status === 200) {
-                    toast({
-                        title: "Success",
-                        description: "You have the right to access this resource",
-                        status: "success",
-                        duration: 3000,
-                        isClosable: true,
-                    })
-                }
-            } catch (e) {
-                console.log('Request [loginRequest] error', e);
-                toast({
-                    title: "Error",
-                    description: "You don't have the right to access this resource",
-                    status: "error",
+            if (response.status === 200) {
+                dispatch(uiManagerActions.showToast({
+                    title: "Success",
+                    description: "You have the ADMIN right to access this resource",
+                    status: "success",
                     duration: 3000,
                     isClosable: true,
-                });
+                }));
             }
+        } catch (e) {
+            console.log('Request [loginRequest] error', e);
+            dispatch(uiManagerActions.showToast({
+                title: "Error",
+                description: "You don't have the ADMIN right to access this resource",
+                status: "error",
+                duration: 3000,
+                isClosable: true,
+            }));
         }
-
-        return (
-            <div>
-                <form className="form-item" onSubmit={testUserGrant}>
-
-                    <button type="submit" className="btn btn-block btn-primary">Test user grant</button>
-                </form>
-
-                <form className="form-item" onSubmit={testAdminGrant}>
-
-                    <button type="submit" className="btn btn-block btn-primary">Test admin grant</button>
-                </form>
-                {/*<span className="signup-link">New user? <Link to="/signup">Sign up!</Link></span>*/}
-
-            </div>
-        )
-            ;
     }
 
-    export default TestGrants;
+    return (
+        <div>
+            <form className="form-item" onSubmit={testUserGrant}>
+
+                <button type="submit" className="btn btn-block btn-primary">Test user grant</button>
+            </form>
+
+            <form className="form-item" onSubmit={testAdminGrant}>
+
+                <button type="submit" className="btn btn-block btn-primary">Test admin grant</button>
+            </form>
+            {/*<span className="signup-link">New user? <Link to="/signup">Sign up!</Link></span>*/}
+
+        </div>
+    )
+        ;
+}
+
+export default TestGrants;
