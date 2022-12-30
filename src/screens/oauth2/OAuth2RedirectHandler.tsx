@@ -15,10 +15,8 @@ const OAuth2RedirectHandler = () => {
     async function getUserMe(token: string) {
         try {
             AuthService.setAccessToken(token);
-
             const responseData = await dispatch(AuthActions.getCurrentUser())
-            const response = responseData.payload as LoginAuthenticateResponse
-            if (!response.isAuth) {
+            if (!responseData) {
                 dispatch(uiManagerActions.showToast({
                     title: 'Error',
                     description: 'Invalid token',

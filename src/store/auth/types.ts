@@ -1,13 +1,12 @@
-import {UtenteRoleNames} from "../../models/utente.model";
+import {UtenteModel, UtenteRoleNames} from "../../models/utente.model";
 
 export interface AuthState {
     isAuth: boolean,
-    email?: string,
     id?: number,
-    role?: UtenteRoleNames,
     isLoading: boolean,
     isError: boolean,
     initialized: boolean,
+    user?: UtenteModel
 }
 
 export interface LoginResponseDto{
@@ -30,9 +29,7 @@ export interface LoginParams{
 export interface LoginAuthenticateResponse {
     isAuth: boolean,
     id?: number,
-    email?: string,
     token?: string,
-    role?: UtenteRoleNames,
 }
 
 export interface ChangeResetPasswordParams{

@@ -23,7 +23,6 @@ export const authReducer = createReducer(initialState, (builder) => {
         return {
             ...state,
             isAuth: action.payload.isAuth,
-            email: action.payload.email,
             id: action.payload.id,
             isError: false,
             isLoading: false,
@@ -43,40 +42,37 @@ export const authReducer = createReducer(initialState, (builder) => {
         }
     });
 
-    builder.addCase(AuthActions.authenticateWithToken.fulfilled, (state, action) => {
-        return {
-            ...state,
-            isAuth: action.payload.isAuth,
-            email: action.payload.email,
-            id: action.payload.id,
-            isError: false,
-            isLoading: false,
-            initialized: true,
-        }
-    });
-
-    builder.addCase(AuthActions.authenticateWithToken.pending, (state, action) => {
-        return {
-            ...state,
-            isError: false,
-            isLoading: true,
-        }
-    });
-
-    builder.addCase(AuthActions.authenticateWithToken.rejected, (state, action) => {
-        return {
-            ...state,
-            isError: false,
-            isLoading: false,
-        }
-    });
+    // builder.addCase(AuthActions.authenticateWithToken.fulfilled, (state, action) => {
+    //     return {
+    //         ...state,
+    //         isAuth: action.payload.isAuth,
+    //         id: action.payload.id,
+    //         isError: false,
+    //         isLoading: false,
+    //         initialized: true,
+    //     }
+    // });
+    //
+    // builder.addCase(AuthActions.authenticateWithToken.pending, (state, action) => {
+    //     return {
+    //         ...state,
+    //         isError: false,
+    //         isLoading: true,
+    //     }
+    // });
+    //
+    // builder.addCase(AuthActions.authenticateWithToken.rejected, (state, action) => {
+    //     return {
+    //         ...state,
+    //         isError: false,
+    //         isLoading: false,
+    //     }
+    // });
 
     builder.addCase(AuthActions.getCurrentUser.fulfilled, (state, action) => {
         return {
             ...state,
-            isAuth: action.payload.isAuth,
-            email: action.payload.email,
-            id: action.payload.id,
+            user: action.payload,
             isError: false,
             isLoading: false,
             initialized: true,

@@ -1,7 +1,7 @@
 import {AxiosResponse} from 'axios';
 import {appAxios} from "./axios.config";
 import {LoginAuthenticateResponse, LoginParams, LoginResponseDto} from "../store/auth/types";
-import {UtenteRoleNames} from "../models/utente.model";
+import {UtenteModel, UtenteRoleNames} from "../models/utente.model";
 import {AxiosError} from "axios/index";
 import {uiManagerActions} from "../store/uiManager/uiManager.action";
 import {useAppDispatch} from "../store/store.config";
@@ -18,22 +18,10 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
         if (response && response.data && response.data.token) {
             AuthService.setAccessToken(response.data.token);
             AuthService.setRefreshToken(response.data.refreshToken);
-            let userRole: UtenteRoleNames = 'ROLE_USER';
-
-            if (response.data.role && response.data.role.filter(e => e.role === 'ROLE_ADMIN').length > 0) {
-                userRole = 'ROLE_ADMIN'
-                console.log('Request [loginRequest] admin role')
-            } else {
-                userRole = 'ROLE_USER'
-                console.log('Request [loginRequest] user role')
-            }
-
             return {
                 isAuth: !!response.data.token,
-                token: response.data.token,
-                email: response.data.email,
                 id: response.data.id,
-                role: userRole,
+                token: response.data.token,
             }
         }
         throw new Error('Bad credentials')
@@ -42,34 +30,15 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
     }
 }
 
-const getCurrentUser = async (): Promise<LoginAuthenticateResponse> => {
+const getCurrentUser = async (): Promise<UtenteModel> => {
     try {
-        const response: AxiosResponse<LoginResponseDto> = await appAxios.post(`/api/user/me`
+        const response: AxiosResponse<UtenteModel> = await appAxios.get(`/api/user/me`
         ).catch((error: AxiosError) => {
             throw error;
         });
 
-        if (response && response.data && response.data.token) {
-            AuthService.setAccessToken(response.data.token);
-            AuthService.setRefreshToken(response.data.refreshToken);
-            let userRole: UtenteRoleNames = 'ROLE_USER';
+        return response.data;
 
-            if (response.data.role && response.data.role.filter(e => e.role === 'ROLE_ADMIN').length > 0) {
-                userRole = 'ROLE_ADMIN'
-                console.log('Request [loginRequest] admin role')
-            } else {
-                userRole = 'ROLE_USER'
-                console.log('Request [loginRequest] user role')
-            }
-
-            return {
-                isAuth: !!response.data.token,
-                token: response.data.token,
-                email: response.data.email,
-                id: response.data.id,
-                role: userRole,
-            }
-        }
         throw new Error('Bad token')
     } catch (e) {
         throw e
@@ -106,7 +75,7 @@ const sendResetPassword = async (email: string): Promise<void> => {
 
 //LOCAL
 const getAccessToken = () => {
-    return localStorage.getItem('accessToken');
+    return localStorage.getItem('accessToken') ;
 }
 
 const setAccessToken = (accessToken: string) => {

@@ -1,15 +1,38 @@
 import React, {useEffect} from 'react';
-import {useAppSelector} from "../../store/store.config";
+import {useAppDispatch, useAppSelector} from "../../store/store.config";
 import './Profile.css';
+import {uiManagerActions} from "../../store/uiManager/uiManager.action";
+import {AuthService} from "../../service/auth.service";
+import {AuthActions} from "../../store/auth/auth.action";
+import {RoutesPaths} from "../../navigation/root.routes";
+import {UtenteModel} from "../../models/utente.model";
+
 const HomePage = () => {
-
+    const [localUser, setUser] = React.useState<UtenteModel>();
     const authState = useAppSelector(state => state.authReducer);
-    const {id, email, role} = authState;
+    const dispatch = useAppDispatch();
 
-    // useEffect(() => {
-    //
-    // }, [authState])
+    async function getUserMe() {
+        try {
+            const responseData = await dispatch(AuthActions.getCurrentUser())
 
+        } catch (e) {
+            dispatch(uiManagerActions.showToast({
+                title: 'Error',
+                description: 'Invalid token',
+                status: 'error',
+                duration: 5000,
+            }))
+        }
+
+    }
+
+    useEffect(() => {
+        getUserMe();
+        const {user} = authState;
+        setUser(localUser);
+        console.log("aaaaaoo", user);
+    }, [localUser])
     return (
         <>
             <div className="profile-container">
@@ -27,8 +50,8 @@ const HomePage = () => {
                         {/*    }*/}
                         {/*</div>*/}
                         <div className="profile-name">
-                            <h2>{id}</h2>
-                            <p className="profile-email">{email}</p>
+                            <h2>{localUser?.id}</h2>
+                            <p className="profile-email">{localUser?.email}</p>
                         </div>
                     </div>
                 </div>

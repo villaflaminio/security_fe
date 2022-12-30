@@ -3,6 +3,7 @@ import {AuthService} from "../../service/auth.service";
 import {ChangeResetPasswordParams, LoginAuthenticateResponse, LoginParams} from "./types";
 import {uiManagerActions} from "../uiManager/uiManager.action";
 import {AxiosError} from "axios";
+import {UtenteModel} from "../../models/utente.model";
 
 export const enum AUTH_ACTION {
     REFRESH_AUTH = 'REFRESH_AUTH',
@@ -23,38 +24,8 @@ const refreshAuthAction = createAction(AUTH_ACTION.REFRESH_AUTH, (payload) => {
 const loginAction = createAsyncThunk<LoginAuthenticateResponse, LoginParams>(AUTH_ACTION.LOGIN, async (params, thunkAPI) => {
     try {
         const response = await AuthService.loginMethod(params);
-        if (response.id && response.email && response.role) {
-            AuthService.setUser(response.id, response.email, response.role);
-        }
-        if (response.token) {
-            AuthService.setAccessToken(response.token);
-            return response;
-        }
-        return {
-            isAuth: false,
-        }
-    } catch (e: any) {
-            thunkAPI.dispatch(uiManagerActions.showToast({
-                title: 'INVALID_CREDENTIALS',
-                description: 'invalid email or password',
-                status: "error",
-                duration: 5000
-            }));
-        return {
-            isAuth: false,
-        }
-    }
-});
 
-const getCurrentUser = createAsyncThunk<LoginAuthenticateResponse>(AUTH_ACTION.CURRENT_USER, async (params, thunkAPI) => {
-    try {
-        const response = await AuthService.getCurrentUser();
-
-        if (response.id && response.email && response.role) {
-            AuthService.setUser(response.id, response.email, response.role);
-        }
         if (response.token) {
-            AuthService.setAccessToken(response.token);
             return response;
         }
         return {
@@ -63,7 +34,7 @@ const getCurrentUser = createAsyncThunk<LoginAuthenticateResponse>(AUTH_ACTION.C
     } catch (e: any) {
         thunkAPI.dispatch(uiManagerActions.showToast({
             title: 'INVALID_CREDENTIALS',
-            description: 'token expired or invalid',
+            description: 'invalid email or password',
             status: "error",
             duration: 5000
         }));
@@ -73,17 +44,31 @@ const getCurrentUser = createAsyncThunk<LoginAuthenticateResponse>(AUTH_ACTION.C
     }
 });
 
-const authenticateWithToken = createAsyncThunk(AUTH_ACTION.LOGIN_WITH_TOKEN, async (params, thunkAPI): Promise<LoginAuthenticateResponse> => {
-    const token = AuthService.getAccessToken();
-    const {id, email, role} = AuthService.getUser();
-
-    return {
-        isAuth: !!token,
-        email,
-        id: id,
-        role,
+const getCurrentUser = createAsyncThunk(AUTH_ACTION.CURRENT_USER, async (params, thunkAPI): Promise<UtenteModel> => {
+    try {
+        return await AuthService.getCurrentUser();
+    } catch (e: any) {
+        thunkAPI.dispatch(uiManagerActions.showToast({
+            title: 'INVALID_CREDENTIALS',
+            description: 'token expired or invalid',
+            status: "error",
+            duration: 5000
+        }));
+        throw e;
     }
 });
+
+// const authenticateWithToken = createAsyncThunk(AUTH_ACTION.LOGIN_WITH_TOKEN, async (params, thunkAPI): Promise<LoginAuthenticateResponse> => {
+//     const token = AuthService.getAccessToken();
+//     const {id, email, role} = AuthService.getUser();
+//
+//     return {
+//         isAuth: !!token,
+//         id: id,
+//         token: token,
+//
+//     }
+// });
 
 const sendResetPasswordAction = createAsyncThunk<boolean, string>(AUTH_ACTION.SEND_RESET_PASSWORD, async (username, thunkAPI) => {
     try {
@@ -126,7 +111,7 @@ const logoutAction = createAsyncThunk(AUTH_ACTION.LOGOUT, async (arg, thunkAPI) 
 export const AuthActions = {
     refreshAuthAction,
     loginAction,
-    authenticateWithToken,
+    // authenticateWithToken,
     logoutAction,
     sendResetPasswordAction,
     getCurrentUser
