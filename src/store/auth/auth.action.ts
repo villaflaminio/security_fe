@@ -7,6 +7,7 @@ import {AxiosError} from "axios";
 export const enum AUTH_ACTION {
     REFRESH_AUTH = 'REFRESH_AUTH',
     LOGIN = 'LOGIN',
+    CURRENT_USER = 'CURRENT_USER',
     LOGIN_WITH_TOKEN = 'LOGIN_WITH_TOKEN',
     LOGOUT = 'LOGOUT',
     SEND_RESET_PASSWORD = 'SEND_RESET_PASSWORD',
@@ -16,6 +17,9 @@ export const enum AUTH_ACTION {
 const refreshAuthAction = createAction(AUTH_ACTION.REFRESH_AUTH, (payload) => {
     return {payload}
 })
+
+//how it works?
+// createAsyncThunk is a function that accepts an action type string and a payload creator function.
 const loginAction = createAsyncThunk<LoginAuthenticateResponse, LoginParams>(AUTH_ACTION.LOGIN, async (params, thunkAPI) => {
     try {
         const response = await AuthService.loginMethod(params);
@@ -36,6 +40,33 @@ const loginAction = createAsyncThunk<LoginAuthenticateResponse, LoginParams>(AUT
                 status: "error",
                 duration: 5000
             }));
+        return {
+            isAuth: false,
+        }
+    }
+});
+
+const getCurrentUser = createAsyncThunk<LoginAuthenticateResponse>(AUTH_ACTION.CURRENT_USER, async (params, thunkAPI) => {
+    try {
+        const response = await AuthService.getCurrentUser();
+
+        if (response.id && response.email && response.role) {
+            AuthService.setUser(response.id, response.email, response.role);
+        }
+        if (response.token) {
+            AuthService.setAccessToken(response.token);
+            return response;
+        }
+        return {
+            isAuth: false,
+        }
+    } catch (e: any) {
+        thunkAPI.dispatch(uiManagerActions.showToast({
+            title: 'INVALID_CREDENTIALS',
+            description: 'token expired or invalid',
+            status: "error",
+            duration: 5000
+        }));
         return {
             isAuth: false,
         }
@@ -98,5 +129,6 @@ export const AuthActions = {
     authenticateWithToken,
     logoutAction,
     sendResetPasswordAction,
+    getCurrentUser
     // changeResetPasswordAction
 }

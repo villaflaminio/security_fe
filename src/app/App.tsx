@@ -1,5 +1,4 @@
 import React from 'react';
-import Login from "../screens/login/login.page";
 import {ToastProvider} from "../providers/toast.provider";
 import {Route, Routes} from 'react-router-dom';
 import {AppRoutes} from "../navigation/root.routes";
@@ -13,8 +12,10 @@ function App() {
                     <Route {...AppRoutes.LOGIN}/>
                     <Route {...AppRoutes.HOME} />
                     <Route {...AppRoutes.NOT_FOUND}/>
+                    <Route {...AppRoutes.OAUT2_REDIRECT}/>
                 </Routes>
             </ToastProvider>
+
         </>
     );
 }

@@ -82,7 +82,6 @@ function TestGrants() {
             </form>
 
             <form className="form-item" onSubmit={testAdminGrant}>
-
                 <button type="submit" className="btn btn-block btn-primary">Test admin grant</button>
             </form>
             {/*<span className="signup-link">New user? <Link to="/signup">Sign up!</Link></span>*/}

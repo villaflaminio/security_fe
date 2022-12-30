@@ -11,7 +11,9 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
     try {
         const response: AxiosResponse<LoginResponseDto> = await appAxios.post(`/api/auth/login`,
             {email: params.email, password: params.password}
-        ).catch((error: AxiosError) => { throw error; });
+        ).catch((error: AxiosError) => {
+            throw error;
+        });
 
         if (response && response.data && response.data.token) {
             AuthService.setAccessToken(response.data.token);
@@ -40,7 +42,39 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
     }
 }
 
+const getCurrentUser = async (): Promise<LoginAuthenticateResponse> => {
+    try {
+        const response: AxiosResponse<LoginResponseDto> = await appAxios.post(`/api/user/me`
+        ).catch((error: AxiosError) => {
+            throw error;
+        });
 
+        if (response && response.data && response.data.token) {
+            AuthService.setAccessToken(response.data.token);
+            AuthService.setRefreshToken(response.data.refreshToken);
+            let userRole: UtenteRoleNames = 'ROLE_USER';
+
+            if (response.data.role && response.data.role.filter(e => e.role === 'ROLE_ADMIN').length > 0) {
+                userRole = 'ROLE_ADMIN'
+                console.log('Request [loginRequest] admin role')
+            } else {
+                userRole = 'ROLE_USER'
+                console.log('Request [loginRequest] user role')
+            }
+
+            return {
+                isAuth: !!response.data.token,
+                token: response.data.token,
+                email: response.data.email,
+                id: response.data.id,
+                role: userRole,
+            }
+        }
+        throw new Error('Bad token')
+    } catch (e) {
+        throw e
+    }
+}
 const sendResetPassword = async (email: string): Promise<void> => {
     console.log('Request [sendResetPassword] params:' + email);
     const response: AxiosResponse = await appAxios.post(`/api/auth/recupero/recuperaPassword`, {}, {
@@ -124,5 +158,6 @@ export const AuthService = {
     sendResetPassword,
     // changeResetPassword,
     getRefreshToken,
-    setRefreshToken
+    setRefreshToken,
+    getCurrentUser
 }

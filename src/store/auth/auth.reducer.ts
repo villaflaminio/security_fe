@@ -3,19 +3,19 @@ import {AuthState} from './types';
 import {AuthActions} from "./auth.action";
 
 const initialState: AuthState = {
-    isAuth:false,
-    isError:false,
-    isLoading:false,
-    initialized:false,
+    isAuth: false,
+    isError: false,
+    isLoading: false,
+    initialized: false,
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
 
     builder.addCase(AuthActions.loginAction.pending, (state, action) => {
-        return{
+        return {
             ...state,
-            isLoading:true,
-            isError:false
+            isLoading: true,
+            isError: false
         }
     });
 
@@ -25,25 +25,79 @@ export const authReducer = createReducer(initialState, (builder) => {
             isAuth: action.payload.isAuth,
             email: action.payload.email,
             id: action.payload.id,
-            isError:false,
-            isLoading:false,
-            initialized:true,
+            isError: false,
+            isLoading: false,
+            initialized: true,
         }
     });
 
     builder.addCase(AuthActions.loginAction.rejected, (state, action) => {
         return {
             ...state,
-            email:undefined,
-            id:undefined,
+            email: undefined,
+            id: undefined,
             isAuth: false,
-            isError:false,
-            isLoading:false,
-            initialized:true
+            isError: false,
+            isLoading: false,
+            initialized: true
         }
     });
 
+    builder.addCase(AuthActions.authenticateWithToken.fulfilled, (state, action) => {
+        return {
+            ...state,
+            isAuth: action.payload.isAuth,
+            email: action.payload.email,
+            id: action.payload.id,
+            isError: false,
+            isLoading: false,
+            initialized: true,
+        }
+    });
 
+    builder.addCase(AuthActions.authenticateWithToken.pending, (state, action) => {
+        return {
+            ...state,
+            isError: false,
+            isLoading: true,
+        }
+    });
+
+    builder.addCase(AuthActions.authenticateWithToken.rejected, (state, action) => {
+        return {
+            ...state,
+            isError: false,
+            isLoading: false,
+        }
+    });
+
+    builder.addCase(AuthActions.getCurrentUser.fulfilled, (state, action) => {
+        return {
+            ...state,
+            isAuth: action.payload.isAuth,
+            email: action.payload.email,
+            id: action.payload.id,
+            isError: false,
+            isLoading: false,
+            initialized: true,
+        }
+    });
+
+    builder.addCase(AuthActions.getCurrentUser.pending, (state, action) => {
+        return {
+            ...state,
+            isError: false,
+            isLoading: true,
+        }
+    });
+
+    builder.addCase(AuthActions.getCurrentUser.rejected, (state, action) => {
+        return {
+            ...state,
+            isError: false,
+            isLoading: false,
+        }
+    });
 
     builder.addDefaultCase((state, action) => {
         return state;
