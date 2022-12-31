@@ -13,6 +13,7 @@ import TestGrants from "./TestGrants";
 const HomePage = () => {
     const [localUser, setUser] = React.useState<UtenteModel>();
     const authUser = useAppSelector(state => state.authReducer.user);
+    const isAuth = useAppSelector(state => state.authReducer.isAuth);
     const dispatch = useAppDispatch();
     const navigate = useNavigate()
 
@@ -23,7 +24,7 @@ const HomePage = () => {
     }
 
     useEffect(() => {
-        if (authUser) {
+        if (authUser && isAuth) {
             setUser(authUser);
         } else {
             getCurrentUser();

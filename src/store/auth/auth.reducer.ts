@@ -117,6 +117,7 @@ export const authReducer = createReducer(initialState, (builder) => {
             user: action.payload,
             isError: false,
             isLoading: false,
+            isAuth: false,
             initialized: true,
         }
     });

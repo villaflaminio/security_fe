@@ -5,20 +5,22 @@ import {AuthActions} from "../../store/auth/auth.action";
 import {RoutesPaths} from "../../navigation/root.routes";
 import {useAppDispatch} from "../../store/store.config";
 import {useNavigate} from "react-router-dom";
+import {UtenteModel} from "../../models/utente.model";
 
 export const SignupForm = () => {
     const dispatch = useAppDispatch();
     const {register, handleSubmit} = useForm<SignupParams>();
     const navigate = useNavigate()
-    const onSubmit: SubmitHandler<LoginParams> = data => handleLogin(data);
-    const handleLogin = async (params: LoginParams) => {
-        await dispatch(AuthActions.loginAction(params)).then((responseData) => {
-            const response = responseData.payload as LoginAuthenticateResponse
-            if (!response.isAuth) {
-                console.log('errore durante il login');
+    const onSubmit: SubmitHandler<SignupParams> = data => handleSignUp(data);
+    const handleSignUp = async (params: SignupParams) => {
+        await dispatch(AuthActions.signUp(params)).then(async (responseData) => {
+            const response = responseData.payload as UtenteModel
+            if (!response.id) {
+                console.log('errore durante la registrazione');
             } else {
-                console.log("Login effettuato con successo", response);
-                navigate(RoutesPaths.HOME.toString())
+                await dispatch(AuthActions.loginAction(params)).then((responseData) => {
+                    navigate(RoutesPaths.LOGIN.toString())
+                })
             }
         })
     }
@@ -40,7 +42,7 @@ export const SignupForm = () => {
                            placeholder="Password" {...register("password", {required: true, minLength: 5})} />
                 </div>
                 <div className="form-item">
-                    <button type="submit" className="btn btn-block btn-primary">Login</button>
+                    <button type="submit" className="btn btn-block btn-primary">Sign Up</button>
                 </div>
             </form>
 

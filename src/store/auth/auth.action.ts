@@ -57,8 +57,8 @@ const signUp = createAsyncThunk<UtenteModel, SignupParams>(AUTH_ACTION.SIGNUP, a
 
     } catch (e: any) {
         thunkAPI.dispatch(uiManagerActions.showToast({
-            title: 'INVALID_CREDENTIALS',
-            description: 'invalid email or password',
+            title: 'Ops... something went wrong',
+            description: e.response.data,
             status: "error",
             duration: 5000
         }));
