@@ -111,19 +111,13 @@ export const authReducer = createReducer(initialState, (builder) => {
         }
     });
 
-    builder.addCase(AuthActions.getCurrentUser.pending, (state, action) => {
+    builder.addCase(AuthActions.signUp.fulfilled, (state, action) => {
         return {
             ...state,
-            isError: false,
-            isLoading: true,
-        }
-    });
-
-    builder.addCase(AuthActions.getCurrentUser.rejected, (state, action) => {
-        return {
-            ...state,
+            user: action.payload,
             isError: false,
             isLoading: false,
+            initialized: true,
         }
     });
 

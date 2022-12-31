@@ -4,7 +4,7 @@ import {
     AuthenticateWithTokenResponse,
     ChangeResetPasswordParams,
     LoginAuthenticateResponse,
-    LoginParams
+    LoginParams, SignupParams
 } from "./types";
 import {uiManagerActions} from "../uiManager/uiManager.action";
 import {AxiosError} from "axios";
@@ -18,7 +18,8 @@ export const enum AUTH_ACTION {
     LOGIN_WITH_OAUTH2 = 'LOGIN_WITH_OAUTH2',
     LOGOUT = 'LOGOUT',
     SEND_RESET_PASSWORD = 'SEND_RESET_PASSWORD',
-    CHANGE_RESET_PASSWORD = 'CHANGE_RESET_PASSWORD'
+    CHANGE_RESET_PASSWORD = 'CHANGE_RESET_PASSWORD',
+    SIGNUP = 'SIGNUP',
 }
 
 const refreshAuthAction = createAction(AUTH_ACTION.REFRESH_AUTH, (payload) => {
@@ -50,6 +51,21 @@ const loginAction = createAsyncThunk<LoginAuthenticateResponse, LoginParams>(AUT
     }
 });
 
+const signUp = createAsyncThunk<UtenteModel, SignupParams>(AUTH_ACTION.SIGNUP, async (params, thunkAPI): Promise<UtenteModel> => {
+    try {
+        return await AuthService.signUp(params);
+
+    } catch (e: any) {
+        thunkAPI.dispatch(uiManagerActions.showToast({
+            title: 'INVALID_CREDENTIALS',
+            description: 'invalid email or password',
+            status: "error",
+            duration: 5000
+        }));
+        throw e;
+    }
+});
+
 const getCurrentUser = createAsyncThunk(AUTH_ACTION.CURRENT_USER, async (params, thunkAPI): Promise<UtenteModel> => {
     try {
         return await AuthService.getCurrentUser();
@@ -73,7 +89,7 @@ const authenticateWithToken = createAsyncThunk(AUTH_ACTION.LOGIN_WITH_TOKEN, asy
     }
 });
 
-const loginWithOAuth2 = createAsyncThunk(AUTH_ACTION.LOGIN_WITH_OAUTH2, async (token : string, thunkAPI): Promise<AuthenticateWithTokenResponse> => {
+const loginWithOAuth2 = createAsyncThunk(AUTH_ACTION.LOGIN_WITH_OAUTH2, async (token: string, thunkAPI): Promise<AuthenticateWithTokenResponse> => {
     try {
         AuthService.setAccessToken(token);
         return await AuthService.authenticateWithToken();
@@ -130,6 +146,7 @@ export const AuthActions = {
     logoutAction,
     sendResetPasswordAction,
     getCurrentUser,
-    loginWithOAuth2
+    loginWithOAuth2,
+    signUp,
     // changeResetPasswordAction
 }

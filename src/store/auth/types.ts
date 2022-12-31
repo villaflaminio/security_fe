@@ -27,7 +27,11 @@ export interface LoginParams{
     email:string
     password:string
 }
-
+export interface SignupParams{
+    email:string
+    name:string
+    password:string
+}
 export interface LoginAuthenticateResponse {
     isAuth: boolean,
     id?: number,

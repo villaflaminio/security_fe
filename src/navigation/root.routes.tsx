@@ -5,16 +5,18 @@ import LoginPage from "../screens/login/login.page";
 import HomePage from "../screens/home/home.page";
 import OAuth2RedirectHandler from "../providers/oauth2/OAuth2RedirectHandler";
 import {PrivateRoute} from "./customRouting/privateRoute";
+import {Signup} from "../screens/signup/Signup";
 
 
-export type RootRoutes = 'LOGIN' |  'NOT_FOUND' | 'HOME' | 'INDEX' | 'OAUT2_REDIRECT';
+export type RootRoutes = 'LOGIN' |  'NOT_FOUND' | 'HOME' | 'INDEX' | 'OAUT2_REDIRECT' | 'SIGN_UP';
 
 export const RoutesPaths: Record<RootRoutes, String> = {
     INDEX: '/',
     LOGIN: '/login',
     HOME: '/home',
     NOT_FOUND: '*',
-    OAUT2_REDIRECT: '/oauth2/redirect'
+    OAUT2_REDIRECT: '/oauth2/redirect',
+    SIGN_UP: '/signup'
 }
 
 export const AppRoutes: Record<RootRoutes, RouteProps> = {
@@ -37,6 +39,10 @@ export const AppRoutes: Record<RootRoutes, RouteProps> = {
     OAUT2_REDIRECT: {
         path: RoutesPaths.OAUT2_REDIRECT.toString(),
         element: <OAuth2RedirectHandler/>
+    },
+    SIGN_UP: {
+        path: RoutesPaths.SIGN_UP.toString(),
+        element: <Signup/>
     }
 
 }

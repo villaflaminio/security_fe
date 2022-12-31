@@ -4,7 +4,7 @@ import {
     AuthenticateWithTokenResponse,
     LoginAuthenticateResponse,
     LoginParams,
-    LoginResponseDto
+    LoginResponseDto, SignupParams
 } from "../store/auth/types";
 import {UtenteModel, UtenteRoleNames} from "../models/utente.model";
 import {AxiosError} from "axios/index";
@@ -37,6 +37,22 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
             }
         }
         throw new Error('Bad credentials')
+    } catch (e) {
+        throw e
+    }
+}
+
+
+const signUp = async (params: SignupParams): Promise<UtenteModel> => {
+    try {
+        console.log('Request [signUpMethod] params:', params);
+
+        const response: AxiosResponse<UtenteModel> = await appAxios.post(`/api/auth/signup`,
+            { name : params.name ,email: params.email, password: params.password}
+        ).catch((error: AxiosError) => {
+            throw error;
+        });
+        return response.data;
     } catch (e) {
         throw e
     }
@@ -153,6 +169,7 @@ export const AuthService = {
     getAccessToken,
     setAccessToken,
     resetAccessToken,
+    signUp,
     setUser,
     getUser,
     sendResetPassword,

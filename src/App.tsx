@@ -19,6 +19,7 @@ function App() {
                         <Route {...AppRoutes.HOME} />
                         <Route {...AppRoutes.NOT_FOUND}/>
                         <Route {...AppRoutes.OAUT2_REDIRECT}/>
+                        <Route {...AppRoutes.SIGN_UP}/>
                     </Routes>
                 </ToastProvider>
             </Suspense>
