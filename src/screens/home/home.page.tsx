@@ -48,17 +48,7 @@ const HomePage = () => {
             <div className="profile-container">
                 <div className="container">
                     <div className="profile-info">
-                        {/*<div className="profile-avatar">*/}
-                        {/*    {*/}
-                        {/*        this.props.currentUser.imageUrl ? (*/}
-                        {/*            <img src={currentUser.imageUrl} alt={this.props.currentUser.name}/>*/}
-                        {/*        ) : (*/}
-                        {/*            <div className="text-avatar">*/}
-                        {/*                <span>{email}</span>*/}
-                        {/*            </div>*/}
-                        {/*        )*/}
-                        {/*    }*/}
-                        {/*</div>*/}
+
                         <div className="profile-name">
                             <h2>{localUser?.id}</h2>
                             <p className="profile-email">{localUser?.email}</p>

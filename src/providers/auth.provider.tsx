@@ -17,7 +17,6 @@ export const AuthProvider: React.FC<Props> = ({children}) => {
     const location = useLocation();
 
     useEffect(() => {
-        console.log('useEffect')
         handleAuth()
     }, [])
 

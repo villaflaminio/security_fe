@@ -14,13 +14,18 @@ const OAuth2RedirectHandler = () => {
     const dispatch = useAppDispatch();
     const [isLoading, setIsLoading] = useState(true);
 
+    async function finalizeLogin(token: string) {
+        await dispatch(AuthActions.loginWithOAuth2(token))
+    }
+
     React.useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         const token = params.get('token');
 
         if (token) {
-            dispatch(AuthActions.loginWithOAuth2(token))
-            navigate(RoutesPaths.HOME.toString())
+            finalizeLogin(token).then(() => {
+                navigate(RoutesPaths.HOME.toString())
+            });
         } else {
             dispatch(uiManagerActions.showToast({
                 title: 'Error',
