@@ -1,7 +1,7 @@
 import React from 'react';
-import {ToastProvider} from "../providers/toast.provider";
+import {ToastProvider} from "./providers/toast.provider";
 import {Route, Routes} from 'react-router-dom';
-import {AppRoutes} from "../navigation/root.routes";
+import {AppRoutes} from "./navigation/root.routes";
 
 function App() {
     return (

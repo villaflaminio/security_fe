@@ -1,6 +1,11 @@
 import {createAction, createAsyncThunk} from '@reduxjs/toolkit';
 import {AuthService} from "../../service/auth.service";
-import {ChangeResetPasswordParams, LoginAuthenticateResponse, LoginParams} from "./types";
+import {
+    AuthenticateWithTokenResponse,
+    ChangeResetPasswordParams,
+    LoginAuthenticateResponse,
+    LoginParams
+} from "./types";
 import {uiManagerActions} from "../uiManager/uiManager.action";
 import {AxiosError} from "axios";
 import {UtenteModel} from "../../models/utente.model";
@@ -46,6 +51,7 @@ const loginAction = createAsyncThunk<LoginAuthenticateResponse, LoginParams>(AUT
 
 const getCurrentUser = createAsyncThunk(AUTH_ACTION.CURRENT_USER, async (params, thunkAPI): Promise<UtenteModel> => {
     try {
+
         return await AuthService.getCurrentUser();
     } catch (e: any) {
         thunkAPI.dispatch(uiManagerActions.showToast({
@@ -58,17 +64,16 @@ const getCurrentUser = createAsyncThunk(AUTH_ACTION.CURRENT_USER, async (params,
     }
 });
 
-// const authenticateWithToken = createAsyncThunk(AUTH_ACTION.LOGIN_WITH_TOKEN, async (params, thunkAPI): Promise<LoginAuthenticateResponse> => {
-//     const token = AuthService.getAccessToken();
-//     const {id, email, role} = AuthService.getUser();
-//
-//     return {
-//         isAuth: !!token,
-//         id: id,
-//         token: token,
-//
-//     }
-// });
+const authenticateWithToken = createAsyncThunk(AUTH_ACTION.LOGIN_WITH_TOKEN, async (params, thunkAPI): Promise<AuthenticateWithTokenResponse> => {
+    const token = AuthService.getAccessToken();
+    const user =  await AuthService.getCurrentUser();
+
+    return {
+        isAuth: !!token,
+        token: token,
+        user: user
+    }
+});
 
 const sendResetPasswordAction = createAsyncThunk<boolean, string>(AUTH_ACTION.SEND_RESET_PASSWORD, async (username, thunkAPI) => {
     try {
@@ -111,7 +116,7 @@ const logoutAction = createAsyncThunk(AUTH_ACTION.LOGOUT, async (arg, thunkAPI) 
 export const AuthActions = {
     refreshAuthAction,
     loginAction,
-    // authenticateWithToken,
+    authenticateWithToken,
     logoutAction,
     sendResetPasswordAction,
     getCurrentUser

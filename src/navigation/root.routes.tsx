@@ -4,6 +4,7 @@ import NotFoundPage from "../screens/notFound/notFound.page";
 import LoginPage from "../screens/login/login.page";
 import HomePage from "../screens/home/home.page";
 import OAuth2RedirectHandler from "../screens/oauth2/OAuth2RedirectHandler";
+import {PrivateRoute} from "./customRouting/privateRoute";
 
 
 export type RootRoutes = 'LOGIN' |  'NOT_FOUND' | 'HOME' | 'INDEX' | 'OAUT2_REDIRECT';
@@ -31,7 +32,7 @@ export const AppRoutes: Record<RootRoutes, RouteProps> = {
     },
     HOME: {
         path: RoutesPaths.HOME.toString(),
-        element: <HomePage/>
+        element: <PrivateRoute component={HomePage}/>
     },
     OAUT2_REDIRECT: {
         path: RoutesPaths.OAUT2_REDIRECT.toString(),

@@ -2,10 +2,8 @@ import React, {FC, useEffect} from 'react';
 import {useToast} from '@chakra-ui/react';
 import {useAppSelector} from "../store/store.config";
 import {ToastMessage} from "../store/uiManager/types";
+import {Props} from "./types";
 
-interface Props {
-    children: React.ReactNode;
-}
 
 export const ToastProvider: React.FC<Props> = ({children}) => {
     const {toast} = useAppSelector(state => state.uiManagerReducer)

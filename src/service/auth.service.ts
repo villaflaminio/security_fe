@@ -18,10 +18,19 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
         if (response && response.data && response.data.token) {
             AuthService.setAccessToken(response.data.token);
             AuthService.setRefreshToken(response.data.refreshToken);
+
+            let userRole:UtenteRoleNames = 'ROLE_USER'
+
+            if (response.data.role && response.data.role.filter(e => e.role === 'ROLE_ADMIN').length > 0 ) {
+                userRole = 'ROLE_ADMIN'
+                console.log('Request [loginRequest] admin role')
+            }
+
             return {
                 isAuth: !!response.data.token,
                 id: response.data.id,
                 token: response.data.token,
+                role : userRole
             }
         }
         throw new Error('Bad credentials')
@@ -36,10 +45,7 @@ const getCurrentUser = async (): Promise<UtenteModel> => {
         ).catch((error: AxiosError) => {
             throw error;
         });
-
         return response.data;
-
-        throw new Error('Bad token')
     } catch (e) {
         throw e
     }
@@ -75,7 +81,11 @@ const sendResetPassword = async (email: string): Promise<void> => {
 
 //LOCAL
 const getAccessToken = () => {
-    return localStorage.getItem('accessToken') ;
+    if (localStorage.getItem('accessToken')) {
+        return localStorage.getItem('accessToken') as string;
+    }
+
+    throw new Error('No access token present')
 }
 
 const setAccessToken = (accessToken: string) => {

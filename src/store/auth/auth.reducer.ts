@@ -24,6 +24,7 @@ export const authReducer = createReducer(initialState, (builder) => {
             ...state,
             isAuth: action.payload.isAuth,
             id: action.payload.id,
+            token: action.payload.token,
             isError: false,
             isLoading: false,
             initialized: true,
@@ -42,32 +43,34 @@ export const authReducer = createReducer(initialState, (builder) => {
         }
     });
 
-    // builder.addCase(AuthActions.authenticateWithToken.fulfilled, (state, action) => {
-    //     return {
-    //         ...state,
-    //         isAuth: action.payload.isAuth,
-    //         id: action.payload.id,
-    //         isError: false,
-    //         isLoading: false,
-    //         initialized: true,
-    //     }
-    // });
-    //
-    // builder.addCase(AuthActions.authenticateWithToken.pending, (state, action) => {
-    //     return {
-    //         ...state,
-    //         isError: false,
-    //         isLoading: true,
-    //     }
-    // });
-    //
-    // builder.addCase(AuthActions.authenticateWithToken.rejected, (state, action) => {
-    //     return {
-    //         ...state,
-    //         isError: false,
-    //         isLoading: false,
-    //     }
-    // });
+    builder.addCase(AuthActions.authenticateWithToken.fulfilled, (state, action) => {
+        return {
+            ...state,
+            isAuth: action.payload.isAuth,
+            id: action.payload.id,
+            token: action.payload.token,
+            user: action.payload.user,
+            isError: false,
+            isLoading: false,
+            initialized: true,
+        }
+    });
+
+    builder.addCase(AuthActions.authenticateWithToken.pending, (state, action) => {
+        return {
+            ...state,
+            isError: false,
+            isLoading: true,
+        }
+    });
+
+    builder.addCase(AuthActions.authenticateWithToken.rejected, (state, action) => {
+        return {
+            ...state,
+            isError: false,
+            isLoading: false,
+        }
+    });
 
     builder.addCase(AuthActions.getCurrentUser.fulfilled, (state, action) => {
         return {
