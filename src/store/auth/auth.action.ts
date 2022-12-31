@@ -107,7 +107,7 @@ const sendResetPasswordAction = createAsyncThunk<boolean, string>(AUTH_ACTION.SE
         console.log('Error sendResetPasswordAction', e);
         thunkAPI.dispatch(uiManagerActions.showToast({
             title: 'Si è verificato un errore',
-            description: 'Non siamo riusciti ad inviare la mail di reset password',
+            description: e.response.data,
             duration: 3000,
             status: 'error'
         }));

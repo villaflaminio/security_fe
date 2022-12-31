@@ -9,6 +9,7 @@ import {FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, GOOGLE_AUTH_URL} from "../../constan
 import {Link} from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
 import {SocialSignup} from "./SocialSignup";
+import SendRecuperaPasswordPage from "../recuperaPassword/sendRecuperaPassword.page";
 
 
 function LoginPage() {

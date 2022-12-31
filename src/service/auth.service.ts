@@ -72,7 +72,7 @@ const getCurrentUser = async (): Promise<UtenteModel> => {
 }
 const sendResetPassword = async (email: string): Promise<void> => {
     console.log('Request [sendResetPassword] params:' + email);
-    const response: AxiosResponse = await appAxios.post(`/api/auth/recupero/recuperaPassword`, {}, {
+    const response: AxiosResponse = await appAxios.post(`/api/auth/recoveryPassword`, {}, {
         params: {email: email}
     });
 
