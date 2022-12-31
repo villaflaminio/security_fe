@@ -1,9 +1,10 @@
 import React, {FC, useEffect, useState} from 'react';
-import {useLocation} from 'react-router-dom';
+import {Navigate, useLocation} from 'react-router-dom';
 import {Center, Spinner} from '@chakra-ui/react';
 import {useAppDispatch, useAppSelector} from "../store/store.config";
 import {AuthActions} from "../store/auth/auth.action";
 import {Props} from "./types";
+import {RoutesPaths} from "../navigation/root.routes";
 
 
 export const AuthProvider: React.FC<Props> = ({children}) => {
@@ -16,17 +17,18 @@ export const AuthProvider: React.FC<Props> = ({children}) => {
     const location = useLocation();
 
     useEffect(() => {
+        console.log('useEffect')
         handleAuth()
     }, [])
 
 
     const handleAuth = async () => {
         if (!isAuth && !initialized) {
-            await dispatch(AuthActions.authenticateWithToken())
+                await dispatch(AuthActions.authenticateWithToken()).then(() => {
+                    setIsLoading(false)
+                })
         }
-        setIsLoading(false);
     }
-
 
     return (
         <>

@@ -9,7 +9,7 @@ import {useForm, Resolver, SubmitHandler} from 'react-hook-form';
 import {useAppDispatch, useAppSelector} from "../../store/store.config";
 import {LoginAuthenticateResponse, LoginParams, LoginResponseDto} from "../../store/auth/types";
 import {AuthActions} from "../../store/auth/auth.action";
-import TestGrants from "./TestGrants";
+import TestGrants from "../home/TestGrants";
 import {LoginForm} from "./LoginForm";
 import {Button} from "@chakra-ui/react";
 import {AxiosResponse} from "axios";
@@ -21,12 +21,16 @@ import {FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, GOOGLE_AUTH_URL} from "../../constan
 
 function LoginPage() {
 
-    const user = useAppSelector(state => state.authReducer.id);
+    const user = useAppSelector(state => state.authReducer.user);
     const navigate = useNavigate()
+    const dispatch = useAppDispatch();
 
-    // useEffect(()=>{
-    //     console.log("aaaaaoo",user);
-    // },[user])
+    useEffect(() => {
+
+        if (user) {
+            navigate(RoutesPaths.HOME.toString())
+        }
+    }, [])
 
 
     return (
@@ -35,11 +39,11 @@ function LoginPage() {
                 <h1 className="login-title">Login to Spring Security Project</h1>
                 <div className="social-login">
                     <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
-                        <img src={googleLogo} alt="Google" /> Log in with Google</a>
+                        <img src={googleLogo} alt="Google"/> Log in with Google</a>
                     <a className="btn btn-block social-btn facebook" href={FACEBOOK_AUTH_URL}>
-                        <img src={fbLogo} alt="Facebook" /> Log in with Facebook</a>
+                        <img src={fbLogo} alt="Facebook"/> Log in with Facebook</a>
                     <a className="btn btn-block social-btn github" href={GITHUB_AUTH_URL}>
-                        <img src={githubLogo} alt="Github" /> Log in with Github</a>
+                        <img src={githubLogo} alt="Github"/> Log in with Github</a>
                 </div>
 
                 <div className="or-separator">
@@ -51,10 +55,6 @@ function LoginPage() {
                 {/*<span className="signup-link">New user? <Link to="/signup">Sign up!</Link></span>*/}
             </div>
 
-            <div>
-                <h1>Login effettuato con successo</h1>
-                <TestGrants/>
-            </div>
         </div>
 
     );

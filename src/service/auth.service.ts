@@ -1,14 +1,18 @@
 import {AxiosResponse} from 'axios';
 import {appAxios} from "./axios.config";
-import {LoginAuthenticateResponse, LoginParams, LoginResponseDto} from "../store/auth/types";
+import {
+    AuthenticateWithTokenResponse,
+    LoginAuthenticateResponse,
+    LoginParams,
+    LoginResponseDto
+} from "../store/auth/types";
 import {UtenteModel, UtenteRoleNames} from "../models/utente.model";
 import {AxiosError} from "axios/index";
-import {uiManagerActions} from "../store/uiManager/uiManager.action";
-import {useAppDispatch} from "../store/store.config";
 
 const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateResponse> => {
-    console.log('Request [loginRequest] params:', params);
     try {
+        console.log('Request [loginRequest] params:', params);
+
         const response: AxiosResponse<LoginResponseDto> = await appAxios.post(`/api/auth/login`,
             {email: params.email, password: params.password}
         ).catch((error: AxiosError) => {
@@ -19,18 +23,17 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
             AuthService.setAccessToken(response.data.token);
             AuthService.setRefreshToken(response.data.refreshToken);
 
-            let userRole:UtenteRoleNames = 'ROLE_USER'
+            let userRole: UtenteRoleNames = 'ROLE_USER'
 
-            if (response.data.role && response.data.role.filter(e => e.role === 'ROLE_ADMIN').length > 0 ) {
+            if (response.data.role && response.data.role.filter(e => e.role === 'ROLE_ADMIN').length > 0) {
                 userRole = 'ROLE_ADMIN'
                 console.log('Request [loginRequest] admin role')
             }
 
             return {
                 isAuth: !!response.data.token,
-                id: response.data.id,
                 token: response.data.token,
-                role : userRole
+                role: userRole
             }
         }
         throw new Error('Bad credentials')
@@ -41,6 +44,7 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
 
 const getCurrentUser = async (): Promise<UtenteModel> => {
     try {
+        console.log('Request [getCurrentUser] params:', AuthService.getAccessToken());
         const response: AxiosResponse<UtenteModel> = await appAxios.get(`/api/user/me`
         ).catch((error: AxiosError) => {
             throw error;
@@ -63,6 +67,27 @@ const sendResetPassword = async (email: string): Promise<void> => {
     throw new Error('Error during sendResetPassword')
 }
 
+const authenticateWithToken = async (): Promise<AuthenticateWithTokenResponse> => {
+    try {
+        console.log('Request [authenticateWithToken] params:', AuthService.getAccessToken());
+        const token = AuthService.getAccessToken();
+        if(!token) {
+            return {
+                isAuth: false
+            }
+        }
+        const user = await AuthService.getCurrentUser();
+        return {
+            isAuth: true,
+            token: token,
+            user: user
+        }
+    } catch (e) {
+        throw e
+    }
+}
+
+
 // const changeResetPassword = async (params:ChangeResetPasswordParams): Promise<void> => {
 //     console.log('Request [changeResetPassword] params:' + params);
 //     const response: AxiosResponse = await appAxios.post(`/api/auth/recupero/setRecuperaPassword`,{},{
@@ -81,11 +106,7 @@ const sendResetPassword = async (email: string): Promise<void> => {
 
 //LOCAL
 const getAccessToken = () => {
-    if (localStorage.getItem('accessToken')) {
-        return localStorage.getItem('accessToken') as string;
-    }
-
-    throw new Error('No access token present')
+    return localStorage.getItem('accessToken') as string;
 }
 
 const setAccessToken = (accessToken: string) => {
@@ -135,6 +156,7 @@ export const AuthService = {
     setUser,
     getUser,
     sendResetPassword,
+    authenticateWithToken,
     // changeResetPassword,
     getRefreshToken,
     setRefreshToken,

@@ -37,7 +37,7 @@ export interface LoginAuthenticateResponse {
 }
 
 export  interface AuthenticateWithTokenResponse extends LoginAuthenticateResponse{
-    user: UtenteModel
+    user?: UtenteModel
 }
 
 export interface ChangeResetPasswordParams{

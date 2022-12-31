@@ -6,35 +6,45 @@ import {AuthService} from "../../service/auth.service";
 import {AuthActions} from "../../store/auth/auth.action";
 import {RoutesPaths} from "../../navigation/root.routes";
 import {UtenteModel} from "../../models/utente.model";
+import {Link} from "@chakra-ui/react";
+import {Navigate, useNavigate} from "react-router-dom";
+import TestGrants from "./TestGrants";
 
 const HomePage = () => {
     const [localUser, setUser] = React.useState<UtenteModel>();
-    const authState = useAppSelector(state => state.authReducer);
+    const authUser = useAppSelector(state => state.authReducer.user);
     const dispatch = useAppDispatch();
+    const navigate = useNavigate()
 
-    async function getUserMe() {
-        try {
-            const responseData = await dispatch(AuthActions.getCurrentUser())
-
-        } catch (e) {
-            dispatch(uiManagerActions.showToast({
-                title: 'Error',
-                description: 'Invalid token',
-                status: 'error',
-                duration: 5000,
-            }))
-        }
-
+    //get current user async
+    async function getCurrentUser() {
+        const user = await AuthService.getCurrentUser();
+        setUser(user);
     }
 
     useEffect(() => {
-        getUserMe();
-        const {user} = authState;
-        setUser(localUser);
-        console.log("aaaaaoo", user);
-    }, [localUser])
+        if (authUser) {
+            setUser(authUser);
+        } else {
+            getCurrentUser();
+        }
+    }, [])
+
+    const logout = () => {
+        dispatch(AuthActions.logoutAction());
+        navigate(RoutesPaths.LOGIN.toString())
+    }
+
     return (
         <>
+            <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                <Link
+                    className="dropdown-item"
+                    onClick={logout}
+                >
+                    Logout
+                </Link>
+            </nav>
             <div className="profile-container">
                 <div className="container">
                     <div className="profile-info">
@@ -54,6 +64,10 @@ const HomePage = () => {
                             <p className="profile-email">{localUser?.email}</p>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <h1>Login effettuato con successo</h1>
+                    <TestGrants/>
                 </div>
             </div>
         </>
