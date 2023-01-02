@@ -2,7 +2,7 @@ import {createAction, createAsyncThunk} from '@reduxjs/toolkit';
 import {AuthService} from "../../service/auth.service";
 import {
     AuthenticateWithTokenResponse,
-    ChangeResetPasswordParams,
+    ChangePasswordParams,
     LoginAuthenticateResponse,
     LoginParams, SignupParams
 } from "./types";
@@ -20,6 +20,7 @@ export const enum AUTH_ACTION {
     SEND_RESET_PASSWORD = 'SEND_RESET_PASSWORD',
     CHANGE_RESET_PASSWORD = 'CHANGE_RESET_PASSWORD',
     SIGNUP = 'SIGNUP',
+    JWT_FROM_TOKENRESETPASSWORD = 'JWT_FROM_TOKENRESETPASSWORD',
 }
 
 const refreshAuthAction = createAction(AUTH_ACTION.REFRESH_AUTH, (payload) => {
@@ -118,22 +119,36 @@ const loginWithOAuth2 = createAsyncThunk(AUTH_ACTION.LOGIN_WITH_OAUTH2, async (t
 //     }
 // });
 
-// const changeResetPasswordAction = createAsyncThunk<boolean,ChangeResetPasswordParams>(AUTH_ACTION.SEND_RESET_PASSWORD, async (params,thunkAPI) => {
-//     try {
-//         await AuthService.changeResetPassword(params);
-//         return true
-//     } catch (e: any) {
-//         console.log('Error changeResetPasswordAction',e);
-//         thunkAPI.dispatch(uiManagerActions.showToast({
-//             title: 'Si è verificato un errore',
-//             description: 'Non siamo riusciti a cambiare la password',
-//             duration: 3000,
-//             status: 'error'
-//         }));
-//         throw e;
-//     }
-// });
+const changePasswordAction = createAsyncThunk<boolean,ChangePasswordParams>(AUTH_ACTION.SEND_RESET_PASSWORD, async (params, thunkAPI) => {
+    try {
+        await AuthService.changeResetPassword(params);
+        return true
+    } catch (e: any) {
+        console.log('Error changeResetPasswordAction',e);
+        thunkAPI.dispatch(uiManagerActions.showToast({
+            title: 'Si è verificato un errore',
+            description: 'Non siamo riusciti a cambiare la password',
+            duration: 3000,
+            status: 'error'
+        }));
+        throw e;
+    }
+});
 
+const getJwtFromResetPasswordTokenAction = createAsyncThunk(AUTH_ACTION.JWT_FROM_TOKENRESETPASSWORD, async (token:string, thunkAPI) : Promise<LoginAuthenticateResponse> => {
+    try {
+        return await AuthService.getJwtFromResetPasswordToken(token);
+    } catch (e: any) {
+        console.log('Error changeResetPasswordAction',e);
+        thunkAPI.dispatch(uiManagerActions.showToast({
+            title: 'Si è verificato un errore',
+            description: 'Non siamo riusciti a cambiare la password',
+            duration: 3000,
+            status: 'error'
+        }));
+        throw e;
+    }
+});
 
 const logoutAction = createAsyncThunk(AUTH_ACTION.LOGOUT, async (arg, thunkAPI) => {
     AuthService.resetAccessToken();
@@ -150,5 +165,6 @@ export const AuthActions = {
     getCurrentUser,
     loginWithOAuth2,
     signUp,
-    // changeResetPasswordAction
+    changePasswordAction,
+    getJwtFromResetPasswordTokenAction
 }

@@ -134,6 +134,17 @@ export const authReducer = createReducer(initialState, (builder) => {
         }
     });
 
+    builder.addCase(AuthActions.getJwtFromResetPasswordTokenAction.fulfilled, (state, action) => {
+        return {
+            ...state,
+            isAuth: action.payload.isAuth,
+            token: action.payload.token,
+            isError: false,
+            isLoading: false,
+            initialized: true,
+        }
+    });
+
     builder.addDefaultCase((state, action) => {
         return state;
     });

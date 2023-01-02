@@ -49,7 +49,7 @@ export interface AuthenticateWithTokenResponse extends LoginAuthenticateResponse
 
 }
 
-export interface ChangeResetPasswordParams {
-    token: string,
+export interface ChangePasswordParams {
     password: string,
+    confirmPassword: string
 }

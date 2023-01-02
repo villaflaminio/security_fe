@@ -20,6 +20,7 @@ function App() {
                         <Route {...AppRoutes.NOT_FOUND}/>
                         <Route {...AppRoutes.OAUT2_REDIRECT}/>
                         <Route {...AppRoutes.SIGN_UP}/>
+                        <Route {...AppRoutes.RECUPERA_PASSWORD_ID}/>
                     </Routes>
                 </ToastProvider>
             </Suspense>

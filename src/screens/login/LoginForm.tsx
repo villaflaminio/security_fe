@@ -5,7 +5,7 @@ import {useAppDispatch} from "../../store/store.config";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {RoutesPaths} from "../../navigation/root.routes";
 import {useNavigate} from 'react-router-dom';
-import SendRecuperaPasswordPage from "../recuperaPassword/SendRecuperaPasswordModal";
+import SendRecuperaPasswordPage from "./recuperaPassword/SendRecuperaPasswordModal";
 
 export function LoginForm() {
     const dispatch = useAppDispatch();

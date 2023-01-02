@@ -1,7 +1,7 @@
 import {AxiosResponse} from 'axios';
 import {appAxios} from "./axios.config";
 import {
-    AuthenticateWithTokenResponse,
+    AuthenticateWithTokenResponse, ChangePasswordParams,
     LoginAuthenticateResponse,
     LoginParams,
     LoginResponseDto, SignupParams
@@ -48,7 +48,7 @@ const signUp = async (params: SignupParams): Promise<UtenteModel> => {
         console.log('Request [signUpMethod] params:', params);
 
         const response: AxiosResponse<UtenteModel> = await appAxios.post(`/api/auth/signup`,
-            { name : params.name ,email: params.email, password: params.password}
+            {name: params.name, email: params.email, password: params.password}
         ).catch((error: AxiosError) => {
             throw error;
         });
@@ -87,7 +87,7 @@ const authenticateWithToken = async (): Promise<AuthenticateWithTokenResponse> =
     try {
         console.log('Request [authenticateWithToken] params:', AuthService.getAccessToken());
         const token = AuthService.getAccessToken();
-        if(!token) {
+        if (!token) {
             return {
                 isAuth: false,
                 initialized: true
@@ -106,21 +106,45 @@ const authenticateWithToken = async (): Promise<AuthenticateWithTokenResponse> =
 }
 
 
-// const changeResetPassword = async (params:ChangeResetPasswordParams): Promise<void> => {
-//     console.log('Request [changeResetPassword] params:' + params);
-//     const response: AxiosResponse = await appAxios.post(`/api/auth/recupero/setRecuperaPassword`,{},{
-//         params:{
-//             token:params.token,
-//             newPassword:params.password
-//         }
-//     });
-//     console.log('Request [changeResetPassword] ', response.data);
-//     if (response.status === 200) {
-//         return
-//     }
-//     throw new Error('Error during changeResetPassword')
-// }
+const changeResetPassword = async (params: ChangePasswordParams): Promise<void> => {
+    console.log('Request [changeResetPassword] params:' + params);
+    const response: AxiosResponse = await appAxios.post(`/api/auth/changePassword`, {}, {
+        params: {
+            newPassword: params.password
+        }
+    });
+    console.log('Request [changeResetPassword] ', response.data);
+    if (response.status === 200) {
+        return
+    }
+    throw new Error('Error during changeResetPassword')
+}
+const getJwtFromResetPasswordToken = async (token: string): Promise<LoginAuthenticateResponse> => {
+    console.log('Request [changeResetPassword] params:' + token);
+    const response: AxiosResponse<LoginResponseDto> =  await appAxios.post(`/api/auth/tokenResetPassword`, {}, {
+        params:{
+            token: token
+        }
+    });
+    if (response && response.data && response.data.token) {
+        AuthService.setAccessToken(response.data.token);
+        AuthService.setRefreshToken(response.data.refreshToken);
 
+        let userRole: UtenteRoleNames = 'ROLE_USER'
+
+        if (response.data.role && response.data.role.filter(e => e.role === 'ROLE_ADMIN').length > 0) {
+            userRole = 'ROLE_ADMIN'
+            console.log('Request [loginRequest] admin role')
+        }
+
+        return {
+            isAuth: !!response.data.token,
+            token: response.data.token,
+            role: userRole
+        }
+    }
+    throw new Error('Error during changeResetPassword')
+}
 
 //LOCAL
 const getAccessToken = () => {
@@ -176,8 +200,9 @@ export const AuthService = {
     getUser,
     sendResetPassword,
     authenticateWithToken,
-    // changeResetPassword,
+    changeResetPassword,
     getRefreshToken,
     setRefreshToken,
-    getCurrentUser
+    getCurrentUser,
+    getJwtFromResetPasswordToken
 }

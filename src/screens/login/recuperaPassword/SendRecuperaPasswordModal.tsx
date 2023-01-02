@@ -9,13 +9,13 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import {useNavigate} from 'react-router-dom';
-import {useAppDispatch} from "../../store/store.config";
-import {AuthActions} from "../../store/auth/auth.action";
-import {uiManagerActions} from "../../store/uiManager/uiManager.action";
-import {RoutesPaths} from "../../navigation/root.routes";
-import {AuthService} from "../../service/auth.service";
+import {useAppDispatch} from "../../../store/store.config";
+import {AuthActions} from "../../../store/auth/auth.action";
+import {uiManagerActions} from "../../../store/uiManager/uiManager.action";
+import {RoutesPaths} from "../../../navigation/root.routes";
+import {AuthService} from "../../../service/auth.service";
 import {AxiosResponse} from "axios/index";
-import {appAxios} from "../../service/axios.config";
+import {appAxios} from "../../../service/axios.config";
 
 interface Props {
     isOpen: boolean;

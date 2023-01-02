@@ -1,7 +1,4 @@
 import React, {useEffect} from 'react';
-import '../login/style/Login.css';
-import '../login/style/Button.css';
-import '../login/style/Form.css';
 import {useToast} from '@chakra-ui/react'
 
 import {useForm, Resolver, SubmitHandler} from 'react-hook-form';

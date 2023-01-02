@@ -6,9 +6,10 @@ import HomePage from "../screens/home/home.page";
 import OAuth2RedirectHandler from "../providers/oauth2/OAuth2RedirectHandler";
 import {PrivateRoute} from "./customRouting/privateRoute";
 import {Signup} from "../screens/signup/Signup";
+import ResetPasswordPage from "../screens/resetPassword/resetPassword.page";
 
 
-export type RootRoutes = 'LOGIN' |  'NOT_FOUND' | 'HOME' | 'INDEX' | 'OAUT2_REDIRECT' | 'SIGN_UP';
+export type RootRoutes = 'LOGIN' |  'NOT_FOUND' | 'HOME' | 'INDEX' | 'OAUT2_REDIRECT' | 'SIGN_UP'|  'RECUPERA_PASSWORD_ID'  ;
 
 export const RoutesPaths: Record<RootRoutes, String> = {
     INDEX: '/',
@@ -16,7 +17,9 @@ export const RoutesPaths: Record<RootRoutes, String> = {
     HOME: '/home',
     NOT_FOUND: '*',
     OAUT2_REDIRECT: '/oauth2/redirect',
-    SIGN_UP: '/signup'
+    SIGN_UP: '/signup',
+    RECUPERA_PASSWORD_ID: '/recupera-password/:id',
+
 }
 
 export const AppRoutes: Record<RootRoutes, RouteProps> = {
@@ -43,6 +46,10 @@ export const AppRoutes: Record<RootRoutes, RouteProps> = {
     SIGN_UP: {
         path: RoutesPaths.SIGN_UP.toString(),
         element: <Signup/>
-    }
+    },
+    RECUPERA_PASSWORD_ID:{
+        path: RoutesPaths.RECUPERA_PASSWORD_ID.toString(),
+        element: <ResetPasswordPage/>,
+    },
 
 }

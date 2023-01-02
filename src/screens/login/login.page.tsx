@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './style/Login.css';
-import './style/Button.css';
-import './style/Form.css';
+import './Login.css';
 import {useAppDispatch, useAppSelector} from "../../store/store.config";
 import {LoginForm} from "./LoginForm";
 import {RoutesPaths} from "../../navigation/root.routes";
@@ -10,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
 import {SocialSignup} from "./SocialSignup";
-import SendRecuperaPasswordModal from "../recuperaPassword/SendRecuperaPasswordModal";
+import SendRecuperaPasswordModal from "./recuperaPassword/SendRecuperaPasswordModal";
 
 function LoginPage() {
 
