@@ -9,7 +9,9 @@ import {UtenteModel} from "../../models/utente.model";
 
 export const SignupForm = () => {
     const dispatch = useAppDispatch();
-    const {register, handleSubmit} = useForm<SignupParams>();
+    const {
+        register, handleSubmit, watch, formState: {errors, touchedFields} ,
+    } = useForm<SignupParams>();
     const navigate = useNavigate()
     const onSubmit: SubmitHandler<SignupParams> = data => handleSignUp(data);
     const handleSignUp = async (params: SignupParams) => {
@@ -31,16 +33,34 @@ export const SignupForm = () => {
                 <div className="form-item">
                     <input className="form-control" type="text"
                            placeholder="name" {...register("name", {required: true})} />
+                    {errors.name &&  <p className="form-error">Required</p>}
                 </div>
+
                 <div className="form-item">
                     <input className="form-control" type="email"
                            placeholder="Email" {...register("email", {required: true})} />
+                    {errors.email &&  <p className="form-error">Required</p>}
+
                 </div>
 
                 <div className="form-item">
                     <input className="form-control" type="password"
                            placeholder="Password" {...register("password", {required: true, minLength: 5})} />
                 </div>
+                <div className="form-item">
+                    <input className="form-control" type="password"
+                           placeholder="Confirm Password" {...register("confirmPassword", {
+                        validate: (val: string) => {
+                            if (watch('password') != val) {
+                                return "Your passwords do no match";
+                            }
+                        },
+                        required: true, minLength: 5
+                    })} />
+                    {errors.confirmPassword &&  <p className="form-error">{errors.confirmPassword.message}</p>}
+
+                </div>
+
                 <div className="form-item">
                     <button type="submit" className="btn btn-block btn-primary">Sign Up</button>
                 </div>

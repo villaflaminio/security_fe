@@ -11,11 +11,11 @@ export interface AuthState {
     user?: UtenteModel
 }
 
-export interface LoginResponseDto{
+export interface LoginResponseDto {
     token: string,
-    refreshToken:string,
+    refreshToken: string,
     role: [
-        {role: string}
+        { role: string }
     ],
     duration: number,
     email: string
@@ -23,15 +23,18 @@ export interface LoginResponseDto{
 
 }
 
-export interface LoginParams{
-    email:string
-    password:string
+export interface LoginParams {
+    email: string
+    password: string
 }
-export interface SignupParams{
-    email:string
-    name:string
-    password:string
+
+export interface SignupParams {
+    email: string
+    name: string
+    password: string
+    confirmPassword: string
 }
+
 export interface LoginAuthenticateResponse {
     isAuth: boolean,
     id?: number,
@@ -40,11 +43,11 @@ export interface LoginAuthenticateResponse {
 
 }
 
-export  interface AuthenticateWithTokenResponse extends LoginAuthenticateResponse{
+export interface AuthenticateWithTokenResponse extends LoginAuthenticateResponse {
     user?: UtenteModel
 }
 
-export interface ChangeResetPasswordParams{
+export interface ChangeResetPasswordParams {
     token: string,
     password: string,
 }

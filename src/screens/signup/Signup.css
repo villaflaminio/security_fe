@@ -13,6 +13,7 @@
     vertical-align: middle;
     position: relative;    
     padding: 35px;
+    text-align: start;
 }
 
 .social-btn {
@@ -52,4 +53,12 @@
     margin-top: 0;
     margin-bottom: 30px;
     color: rgba(0, 0, 0, 0.65);
+}
+.form-error {
+    color: #bf1650;
+}
+
+.form-error::before {
+    display: inline;
+    content: "⚠ ";
 }
