@@ -25,9 +25,10 @@ const ResetPasswordPage = () => {
 
                         dispatch(uiManagerActions.showToast({
                             title: 'Error',
-                            description: 'Si è verificato un errore',
+                            description: 'Link scaduto, ripetere la procedura di reset password',
                             status: 'error',
                         }))
+                        navigate(RoutesPaths.LOGIN.toString())
                     } else {
                         setCanChange(true);
                     }
@@ -42,7 +43,7 @@ const ResetPasswordPage = () => {
             } else {
                 dispatch(uiManagerActions.showToast({
                     title: 'Error',
-                    description: 'Link corrotto',
+                    description: 'Link recupero password corrotto',
                     status: 'error',
                 }))
             }
