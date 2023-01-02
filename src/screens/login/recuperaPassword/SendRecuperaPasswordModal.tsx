@@ -65,7 +65,7 @@ const SendRecuperaPasswordModal = (props: Props) => {
         <Modal isOpen={props.isOpen} onClose={props.onClose}>
             <ModalOverlay/>
             <ModalContent>
-                <ModalHeader>Modal Title</ModalHeader>
+                <ModalHeader>Recovery password</ModalHeader>
                 <ModalCloseButton/>
                 <ModalBody>
                     Procedi con il recupero della password!

@@ -6,10 +6,11 @@ import HomePage from "../screens/home/home.page";
 import OAuth2RedirectHandler from "../providers/oauth2/OAuth2RedirectHandler";
 import {PrivateRoute} from "./customRouting/privateRoute";
 import {Signup} from "../screens/signup/Signup";
-import ResetPasswordPage from "../screens/resetPassword/resetPassword.page";
+import ResetPasswordPage from "../screens/changePassword/resetPassword.page";
+import ChangePasswordHandler from "../screens/changePassword/changePassword.handler";
 
 
-export type RootRoutes = 'LOGIN' |  'NOT_FOUND' | 'HOME' | 'INDEX' | 'OAUT2_REDIRECT' | 'SIGN_UP'|  'RECUPERA_PASSWORD_ID'  ;
+export type RootRoutes = 'LOGIN' |  'NOT_FOUND' | 'HOME' | 'INDEX' | 'OAUT2_REDIRECT' | 'SIGN_UP'|  'RECUPERA_PASSWORD_ID'| 'CHANGE_PASSWORD' ;
 
 export const RoutesPaths: Record<RootRoutes, String> = {
     INDEX: '/',
@@ -19,6 +20,7 @@ export const RoutesPaths: Record<RootRoutes, String> = {
     OAUT2_REDIRECT: '/oauth2/redirect',
     SIGN_UP: '/signup',
     RECUPERA_PASSWORD_ID: '/recupera-password/:id',
+    CHANGE_PASSWORD: '/change-password'
 
 }
 
@@ -49,7 +51,11 @@ export const AppRoutes: Record<RootRoutes, RouteProps> = {
     },
     RECUPERA_PASSWORD_ID:{
         path: RoutesPaths.RECUPERA_PASSWORD_ID.toString(),
-        element: <ResetPasswordPage/>,
+        element: <ChangePasswordHandler/>,
     },
+    CHANGE_PASSWORD:{
+        path: RoutesPaths.CHANGE_PASSWORD.toString(),
+        element: <ResetPasswordPage/>,
+    }
 
 }

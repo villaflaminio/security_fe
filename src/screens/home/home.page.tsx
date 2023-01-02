@@ -60,6 +60,11 @@ const HomePage = () => {
                     <h1>Login effettuato con successo</h1>
                     <TestGrants/>
                 </div>
+
+                <form className="form-item" onSubmit={() => navigate(RoutesPaths.CHANGE_PASSWORD.toString())}>
+
+                    <button type="submit" className="btn btn-block btn-primary">Change password</button>
+                </form>
             </div>
         </>
 

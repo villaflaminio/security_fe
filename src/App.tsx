@@ -21,6 +21,7 @@ function App() {
                         <Route {...AppRoutes.OAUT2_REDIRECT}/>
                         <Route {...AppRoutes.SIGN_UP}/>
                         <Route {...AppRoutes.RECUPERA_PASSWORD_ID}/>
+                        <Route {...AppRoutes.CHANGE_PASSWORD}/>
                     </Routes>
                 </ToastProvider>
             </Suspense>
