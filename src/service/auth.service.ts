@@ -108,10 +108,8 @@ const authenticateWithToken = async (): Promise<AuthenticateWithTokenResponse> =
 
 const changeResetPassword = async (params: ChangePasswordParams): Promise<void> => {
     console.log('Request [changeResetPassword] params:' + params);
-    const response: AxiosResponse = await appAxios.post(`/api/auth/changePassword`, {}, {
-        params: {
-            newPassword: params.password
-        }
+    const response: AxiosResponse = await appAxios.post(`/api/auth/changePassword`, {
+        newPassword: params.password
     });
     console.log('Request [changeResetPassword] ', response.data);
     if (response.status === 200) {
@@ -121,8 +119,8 @@ const changeResetPassword = async (params: ChangePasswordParams): Promise<void> 
 }
 const getJwtFromResetPasswordToken = async (token: string): Promise<LoginAuthenticateResponse> => {
     console.log('Request [changeResetPassword] params:' + token);
-    const response: AxiosResponse<LoginResponseDto> =  await appAxios.post(`/api/auth/tokenResetPassword`, {}, {
-        params:{
+    const response: AxiosResponse<LoginResponseDto> = await appAxios.post(`/api/auth/tokenResetPassword`, {}, {
+        params: {
             token: token
         }
     });
