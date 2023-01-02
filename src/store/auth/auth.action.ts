@@ -85,7 +85,10 @@ const authenticateWithToken = createAsyncThunk(AUTH_ACTION.LOGIN_WITH_TOKEN, asy
         return await AuthService.authenticateWithToken();
     } catch (e: any) {
         console.log("session expired ");
-        throw e;
+        return {
+            isAuth: false,
+            initialized: true
+        }
     }
 });
 
@@ -99,21 +102,21 @@ const loginWithOAuth2 = createAsyncThunk(AUTH_ACTION.LOGIN_WITH_OAUTH2, async (t
     }
 });
 
-const sendResetPasswordAction = createAsyncThunk<boolean, string>(AUTH_ACTION.SEND_RESET_PASSWORD, async (username, thunkAPI) => {
-    try {
-        await AuthService.sendResetPassword(username);
-        return true
-    } catch (e: any) {
-        console.log('Error sendResetPasswordAction', e);
-        thunkAPI.dispatch(uiManagerActions.showToast({
-            title: 'Si è verificato un errore',
-            description: e.response.data,
-            duration: 3000,
-            status: 'error'
-        }));
-        throw e;
-    }
-});
+// const sendResetPasswordAction = createAsyncThunk<boolean, string>(AUTH_ACTION.SEND_RESET_PASSWORD, async (username, thunkAPI) : Promise<boolean> => {
+//     try {
+//         await AuthService.sendResetPassword(username);
+//         return true
+//     } catch (e: any) {
+//         console.log('Error sendResetPasswordAction', e);
+//         thunkAPI.dispatch(uiManagerActions.showToast({
+//             title: 'Si è verificato un errore',
+//             description: 'Non siamo riusciti ad inviare la mail di reset password',
+//             duration: 3000,
+//             status: 'error'
+//         }));
+//         throw e;
+//     }
+// });
 
 // const changeResetPasswordAction = createAsyncThunk<boolean,ChangeResetPasswordParams>(AUTH_ACTION.SEND_RESET_PASSWORD, async (params,thunkAPI) => {
 //     try {
@@ -144,7 +147,6 @@ export const AuthActions = {
     loginAction,
     authenticateWithToken,
     logoutAction,
-    sendResetPasswordAction,
     getCurrentUser,
     loginWithOAuth2,
     signUp,

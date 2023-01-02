@@ -1,22 +1,23 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './style/Login.css';
 import './style/Button.css';
 import './style/Form.css';
 import {useAppDispatch, useAppSelector} from "../../store/store.config";
 import {LoginForm} from "./LoginForm";
 import {RoutesPaths} from "../../navigation/root.routes";
-import {FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, GOOGLE_AUTH_URL} from "../../constants";
-import {Link} from "@chakra-ui/react";
+import {
+    Link,
+} from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
 import {SocialSignup} from "./SocialSignup";
-import SendRecuperaPasswordPage from "../recuperaPassword/sendRecuperaPassword.page";
-
+import SendRecuperaPasswordModal from "../recuperaPassword/SendRecuperaPasswordModal";
 
 function LoginPage() {
 
     const user = useAppSelector(state => state.authReducer.user);
     const navigate = useNavigate()
     const dispatch = useAppDispatch();
+    let [showRecoveryPassword, setShowRecoveryPassword] = useState(false)
 
     useEffect(() => {
 
@@ -38,8 +39,17 @@ function LoginPage() {
 
                 {/*form login email password*/}
                 <LoginForm/>
+                <div>
                 <span className="signup-link">New user? <Link
                     onClick={() => navigate(RoutesPaths.SIGN_UP.toString())}>Sign up!</Link></span>
+                </div>
+
+                <div>
+                <span className="signup-link">Password Lost? <Link
+                    onClick={() => setShowRecoveryPassword(true)}>Recovery password</Link></span>
+                    <SendRecuperaPasswordModal isOpen={showRecoveryPassword}
+                                               onClose={() => setShowRecoveryPassword(false)}/>
+                </div>
             </div>
 
         </div>

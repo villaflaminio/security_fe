@@ -70,7 +70,7 @@ const getCurrentUser = async (): Promise<UtenteModel> => {
         throw e
     }
 }
-const sendResetPassword = async (email: string): Promise<void> => {
+const sendResetPassword = async (email: string) => {
     console.log('Request [sendResetPassword] params:' + email);
     const response: AxiosResponse = await appAxios.post(`/api/auth/recoveryPassword`, {}, {
         params: {email: email}
@@ -78,7 +78,7 @@ const sendResetPassword = async (email: string): Promise<void> => {
 
     console.log('Request [sendResetPassword] ', response.data);
     if (response.status === 200) {
-        return
+        return true;
     }
     throw new Error('Error during sendResetPassword')
 }
@@ -89,14 +89,16 @@ const authenticateWithToken = async (): Promise<AuthenticateWithTokenResponse> =
         const token = AuthService.getAccessToken();
         if(!token) {
             return {
-                isAuth: false
+                isAuth: false,
+                initialized: true
             }
         }
         const user = await AuthService.getCurrentUser();
         return {
             isAuth: true,
             token: token,
-            user: user
+            user: user,
+            initialized: true
         }
     } catch (e) {
         throw e
