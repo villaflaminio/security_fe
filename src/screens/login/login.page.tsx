@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './Login.css';
 import {useAppDispatch, useAppSelector} from "../../store/store.config";
-import {LoginForm} from "./LoginForm";
+import {LoginForm} from "../auth/pages/LoginForm";
 import {RoutesPaths} from "../../navigation/root.routes";
 import {
     Link,

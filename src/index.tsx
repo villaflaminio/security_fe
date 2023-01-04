@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
-        <ChakraProvider>
+        // <ChakraProvider>
             <Provider store={store}>
                 <BrowserRouter>
                     <AuthProvider>
@@ -21,7 +21,7 @@ root.render(
                     </AuthProvider>
                 </BrowserRouter>
             </Provider>
-        </ChakraProvider>
+        // </ChakraProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

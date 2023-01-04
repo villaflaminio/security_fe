@@ -8,6 +8,7 @@ import {PrivateRoute} from "./customRouting/privateRoute";
 import {Signup} from "../screens/signup/Signup";
 import ResetPasswordPage from "../screens/changePassword/resetPassword.page";
 import ChangePasswordHandler from "../screens/changePassword/changePassword.handler";
+import Login from "../screens/auth/pages/Login";
 
 
 export type RootRoutes = 'LOGIN' |  'NOT_FOUND' | 'HOME' | 'INDEX' | 'OAUT2_REDIRECT' | 'SIGN_UP'|  'RECUPERA_PASSWORD_ID'| 'CHANGE_PASSWORD' ;
@@ -31,7 +32,8 @@ export const AppRoutes: Record<RootRoutes, RouteProps> = {
     },
     LOGIN: {
         path: RoutesPaths.LOGIN.toString(),
-        element: <LoginPage/>,
+        // element: <LoginPage/>,
+        element: <Login/>,
     },
     NOT_FOUND: {
         path: RoutesPaths.NOT_FOUND.toString(),

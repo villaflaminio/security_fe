@@ -7,10 +7,10 @@ export interface UtenteRole {
 export interface UtenteModel{
     id: number,
     email: string,
-    username: string,
+    name: string,
     enabled: boolean,
-    firstName: string,
-    lastName: string,
+    imageUrl : string,
+   emailVerified: boolean,
     roles: UtenteRole[],
 }
 
