@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {SocialSignup} from "../../login/SocialSignup";
-import {LoginForm} from "./LoginForm";
+import {LoginForm} from "../../../components/LoginForm";
 import {RoutesPaths} from "../../../navigation/root.routes";
 import SendRecuperaPasswordModal from "../../login/recuperaPassword/SendRecuperaPasswordModal";
 import {useAppDispatch, useAppSelector} from "../../../store/store.config";
 import {useNavigate} from "react-router-dom";
 import './Login.css';
-import {Box, Grid, Link, Paper, Typography} from '@mui/material';
+import {Box, Button, Grid, Link, Paper, Typography} from '@mui/material';
 import BoxedLayout from "../../../components/BoxedLayout";
-
 const Login = () => {
     const user = useAppSelector(state => state.authReducer.user);
     const navigate = useNavigate()
@@ -41,24 +40,21 @@ const Login = () => {
                     <Typography component="h1" variant="h5">
                         Login
                     </Typography>
-                    <Box marginTop={3}>
-                        <Box marginTop={3}>
+                    <Box marginTop={3} >
+                        <Box marginTop={5} >
                             <SocialSignup/>
                         </Box>
-
                         <LoginForm/>
 
-                        <Box  alignContent={"center"}>
-
-                            <Box
-                                component="form"
-                                noValidate
-                                onSubmit={() => navigate(RoutesPaths.SIGN_UP.toString())}
+                            <Button
+                                onClick={() => navigate(RoutesPaths.SIGN_UP.toString())}
+                                color="primary"
+                                fullWidth
+                                sx={{ mt: 2 }}
                             >
-                                <button type="submit" className="signup-button">Sign up!</button>
-                            </Box>
+                                Sign up!
+                            </Button>
                         </Box>
-                    </Box>
                 </BoxedLayout>
             </Grid>
         </Grid>

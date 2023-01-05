@@ -5,13 +5,13 @@ import LoginPage from "../screens/login/login.page";
 import HomePage from "../screens/home/home.page";
 import OAuth2RedirectHandler from "../providers/oauth2/OAuth2RedirectHandler";
 import {PrivateRoute} from "./customRouting/privateRoute";
-import {Signup} from "../screens/signup/Signup";
 import ResetPasswordPage from "../screens/changePassword/resetPassword.page";
 import ChangePasswordHandler from "../screens/changePassword/changePassword.handler";
 import Login from "../screens/auth/pages/Login";
+import {Signup} from "../screens/auth/pages/Signup";
 
 
-export type RootRoutes = 'LOGIN' |  'NOT_FOUND' | 'HOME' | 'INDEX' | 'OAUT2_REDIRECT' | 'SIGN_UP'|  'RECUPERA_PASSWORD_ID'| 'CHANGE_PASSWORD' ;
+export type RootRoutes = 'LOGIN' |  'NOT_FOUND' | 'HOME' | 'INDEX' | 'OAUT2_REDIRECT' | 'SIGN_UP'|  'RECUPERA_PASSWORD_ID'| 'CHANGE_PASSWORD' | 'FORGOT_PASSWORD';
 
 export const RoutesPaths: Record<RootRoutes, String> = {
     INDEX: '/',
@@ -21,7 +21,8 @@ export const RoutesPaths: Record<RootRoutes, String> = {
     OAUT2_REDIRECT: '/oauth2/redirect',
     SIGN_UP: '/signup',
     RECUPERA_PASSWORD_ID: '/recupera-password/:id',
-    CHANGE_PASSWORD: '/change-password'
+    CHANGE_PASSWORD: '/change-password',
+    FORGOT_PASSWORD: '/forgot-password'
 
 }
 
@@ -57,6 +58,10 @@ export const AppRoutes: Record<RootRoutes, RouteProps> = {
     },
     CHANGE_PASSWORD:{
         path: RoutesPaths.CHANGE_PASSWORD.toString(),
+        element: <ResetPasswordPage/>,
+    },
+    FORGOT_PASSWORD:{
+        path: RoutesPaths.FORGOT_PASSWORD.toString(),
         element: <ResetPasswordPage/>,
     }
 

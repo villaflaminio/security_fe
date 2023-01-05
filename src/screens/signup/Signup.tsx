@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {SocialSignup} from "../login/SocialSignup";
-import {SignupForm} from "./SignupForm";
+import {SignupForm} from "../../components/SignupForm";
 import {RoutesPaths} from "../../navigation/root.routes";
 import {Link} from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
-import './Signup.css';
-export const Signup = () => {
+export const Signuppp = () => {
 
     const navigate = useNavigate();
 

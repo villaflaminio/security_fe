@@ -7,7 +7,6 @@ import {RoutesPaths} from "../../navigation/root.routes";
 import {UtenteModel} from "../../models/utente.model";
 import {Navigate, useNavigate} from "react-router-dom";
 import TestGrants from "./TestGrants";
-import {Navbar, Link, Text, Avatar, Dropdown, User} from "@nextui-org/react";
 import NavbarComponent from "./navbar.component";
 import {Content} from "./Content";
 

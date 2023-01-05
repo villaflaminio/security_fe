@@ -6,10 +6,12 @@ export const SocialSignup = () => {
 
     return (
         <>
-            <div className="social-login">
-                <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
-                    <img src={googleLogo} alt="Google"/> Log in with Google</a>
+            <div className="social-signup">
+                <img className="login-container" src={googleLogo} alt="A grey image showing text 60 x 60"/>
+                <a className="google" href={GOOGLE_AUTH_URL}>  Log in with Google</a>
             </div>
+
+
         </>
     );
 

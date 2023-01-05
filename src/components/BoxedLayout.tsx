@@ -17,7 +17,6 @@ const BoxedLayout = ({ children }: BoxedLayoutProps) => {
 
   return (
     <React.Fragment>
-
         <Box
             sx={{
                 height: 100,
