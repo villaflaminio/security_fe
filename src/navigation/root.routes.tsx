@@ -9,6 +9,7 @@ import ResetPasswordPage from "../screens/changePassword/resetPassword.page";
 import ChangePasswordHandler from "../screens/changePassword/changePassword.handler";
 import Login from "../screens/auth/pages/Login";
 import {Signup} from "../screens/auth/pages/Signup";
+import ForgotPassword from "../screens/auth/pages/ForgotPassword";
 
 
 export type RootRoutes = 'LOGIN' |  'NOT_FOUND' | 'HOME' | 'INDEX' | 'OAUT2_REDIRECT' | 'SIGN_UP'|  'RECUPERA_PASSWORD_ID'| 'CHANGE_PASSWORD' | 'FORGOT_PASSWORD';
@@ -62,7 +63,7 @@ export const AppRoutes: Record<RootRoutes, RouteProps> = {
     },
     FORGOT_PASSWORD:{
         path: RoutesPaths.FORGOT_PASSWORD.toString(),
-        element: <ResetPasswordPage/>,
+        element: <ForgotPassword/>,
     }
 
 }
