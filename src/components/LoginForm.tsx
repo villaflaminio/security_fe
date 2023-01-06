@@ -6,7 +6,6 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {RoutesPaths} from "../navigation/root.routes";
 import {useNavigate} from 'react-router-dom';
 import {Box, Link, TextField} from "@mui/material";
-import SendRecuperaPasswordModal from "../screens/login/recuperaPassword/SendRecuperaPasswordModal";
 import LoadingButton from '@mui/lab/LoadingButton';
 
 export function LoginForm() {

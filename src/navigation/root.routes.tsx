@@ -1,7 +1,6 @@
 import {Navigate, RouteProps} from 'react-router-dom';
 import React from 'react';
 import NotFoundPage from "../screens/notFound/notFound.page";
-import LoginPage from "../screens/login/login.page";
 import HomePage from "../screens/home/home.page";
 import OAuth2RedirectHandler from "../providers/oauth2/OAuth2RedirectHandler";
 import {PrivateRoute} from "./customRouting/privateRoute";

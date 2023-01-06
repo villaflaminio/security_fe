@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {SocialSignup} from "../../login/SocialSignup";
 import {LoginForm} from "../../../components/LoginForm";
 import {RoutesPaths} from "../../../navigation/root.routes";
-import SendRecuperaPasswordModal from "../../login/recuperaPassword/SendRecuperaPasswordModal";
 import {useAppDispatch, useAppSelector} from "../../../store/store.config";
 import {useNavigate} from "react-router-dom";
 import './Login.css';
 import {Box, Button, Grid, Link, Paper, Typography} from '@mui/material';
 import BoxedLayout from "../../../components/BoxedLayout";
+import {SocialSignup} from "../../../components/SocialSignup";
 const Login = () => {
     const user = useAppSelector(state => state.authReducer.user);
     const navigate = useNavigate()
