@@ -6,9 +6,10 @@ import OAuth2RedirectHandler from "../providers/oauth2/OAuth2RedirectHandler";
 import {PrivateRoute} from "./customRouting/privateRoute";
 import ResetPasswordPage from "../screens/changePassword/resetPassword.page";
 import ChangePasswordHandler from "../screens/changePassword/changePassword.handler";
-import Login from "../screens/auth/pages/Login";
-import {Signup} from "../screens/auth/pages/Signup";
-import ForgotPassword from "../screens/auth/pages/ForgotPassword";
+import Login from "../screens/auth/Login";
+import {Signup} from "../screens/auth/Signup";
+import ForgotPassword from "../screens/auth/ForgotPassword";
+import AdminLayout from "../screens/admin/pages/Admin";
 
 
 export type RootRoutes = 'LOGIN' |  'NOT_FOUND' | 'HOME' | 'INDEX' | 'OAUT2_REDIRECT' | 'SIGN_UP'|  'RECUPERA_PASSWORD_ID'| 'CHANGE_PASSWORD' | 'FORGOT_PASSWORD';
@@ -42,7 +43,7 @@ export const AppRoutes: Record<RootRoutes, RouteProps> = {
     },
     HOME: {
         path: RoutesPaths.HOME.toString(),
-        element: <PrivateRoute component={HomePage}/>
+        element: <PrivateRoute component={AdminLayout}/>
     },
     OAUT2_REDIRECT: {
         path: RoutesPaths.OAUT2_REDIRECT.toString(),
