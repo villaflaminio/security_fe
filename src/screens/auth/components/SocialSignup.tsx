@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {GOOGLE_AUTH_URL} from "../constants";
-import googleLogo from "../assets/google-logo.png";
+import {GOOGLE_AUTH_URL} from "../../../constants";
+import googleLogo from "../../../assets/google-logo.png";
 
 export const SocialSignup = () => {
 

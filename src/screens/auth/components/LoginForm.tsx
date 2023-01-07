@@ -1,13 +1,13 @@
 import React, {useState} from "react";
-import {LoginAuthenticateResponse, LoginParams} from "../store/auth/types";
-import {AuthActions} from "../store/auth/auth.action";
-import {useAppDispatch} from "../store/store.config";
+import {LoginAuthenticateResponse, LoginParams} from "../../../store/auth/types";
+import {AuthActions} from "../../../store/auth/auth.action";
+import {useAppDispatch} from "../../../store/store.config";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {RoutesPaths} from "../navigation/root.routes";
+import {RoutesPaths} from "../../../navigation/root.routes";
 import {useNavigate} from 'react-router-dom';
 import {Box, Link, TextField} from "@mui/material";
 import LoadingButton from '@mui/lab/LoadingButton';
-import {AuthService} from "../service/auth.service";
+import {AuthService} from "../../../service/auth.service";
 
 export function LoginForm() {
     const dispatch = useAppDispatch();

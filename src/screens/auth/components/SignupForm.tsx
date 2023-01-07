@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
-import {LoginAuthenticateResponse, LoginParams, SignupParams} from "../store/auth/types";
-import {AuthActions} from "../store/auth/auth.action";
-import {RoutesPaths} from "../navigation/root.routes";
-import {useAppDispatch} from "../store/store.config";
+import {LoginAuthenticateResponse, LoginParams, SignupParams} from "../../../store/auth/types";
+import {AuthActions} from "../../../store/auth/auth.action";
+import {RoutesPaths} from "../../../navigation/root.routes";
+import {useAppDispatch} from "../../../store/store.config";
 import {useNavigate} from "react-router-dom";
-import {UtenteModel} from "../models/utente.model";
+import {UtenteModel} from "../../../models/utente.model";
 import {Box, Button, TextField} from '@mui/material';
 
 export const SignupForm = () => {

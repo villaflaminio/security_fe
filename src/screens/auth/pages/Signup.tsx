@@ -3,7 +3,7 @@ import {Link} from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
 import BoxedLayout from "../../../components/BoxedLayout";
 import {Box, Button, Typography} from "@mui/material";
-import {SignupForm} from "../../../components/SignupForm";
+import {SignupForm} from "../components/SignupForm";
 import {RoutesPaths} from "../../../navigation/root.routes";
 export const Signup = () => {
 
