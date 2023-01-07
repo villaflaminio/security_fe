@@ -13,21 +13,20 @@ export function LoginForm() {
     const dispatch = useAppDispatch();
     const {register, handleSubmit, watch, formState: {errors, touchedFields}} = useForm<LoginParams>();
     const navigate = useNavigate()
-    const [errorLogin, errorLoginHandler] = useState(false);
     const [loading, loadingHandler] = useState(false);
 
     const onSubmit: SubmitHandler<LoginParams> = data => handleLogin(data);
     const handleLogin = async (params: LoginParams) => {
+
         loadingHandler(true);
         await dispatch(AuthActions.loginAction(params)).then(async (responseData) => {
             const response = responseData.payload as LoginAuthenticateResponse
-            loadingHandler(false);
             if (!response.isAuth) {
                 console.log('errore durante il login');
-                errorLoginHandler(true);
             } else {
                 console.log("Login effettuato con successo", response);
                 await dispatch(AuthActions.authenticateWithToken()).then(() => {
+                    loadingHandler(false);
                     navigate(RoutesPaths.HOME.toString())
                 });
             }
@@ -53,7 +52,6 @@ export function LoginForm() {
                     label="email"
                     autoComplete="email"
                     autoFocus
-                    value={watch('email')}
                     error={Boolean(errors.email)}
                     helperText={errors.email?.message}
                     {...register("email", {required: true, pattern: /^\S+@\S+$/i})}
@@ -67,7 +65,6 @@ export function LoginForm() {
                     type="password"
                     id="password"
                     autoComplete="password"
-                    value={watch('password')}
                     error={Boolean(errors.password)}
                     helperText={errors.password?.message}
                     {...register("password", {required: true})}

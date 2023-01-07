@@ -45,7 +45,6 @@ export const SignupForm = () => {
                     label="name"
                     autoComplete="family-name"
                     autoFocus
-                    value={watch('name')}
                     error={Boolean(errors.name)}
 
                     helperText={errors.name?.message}
@@ -60,7 +59,6 @@ export const SignupForm = () => {
                     label="email"
                     autoComplete="email"
                     autoFocus
-                    value={watch('email')}
                     error={Boolean(errors.email)}
                     helperText={errors.email?.message}
                     {...register("email", {required: true , pattern: /^\S+@\S+$/i})}

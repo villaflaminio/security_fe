@@ -63,6 +63,7 @@ const AdminDrawer = ({
                 {menuItems.map((item) => (
                     <ListItemButton
                         onClick={() => navigate(RoutesPaths.HOME.toString())}
+                        key={(item.key)}
                     >
                         <ListItemAvatar>
                             <Avatar sx={{color: "inherit", bgcolor: "transparent"}}>
