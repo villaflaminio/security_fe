@@ -1,14 +1,14 @@
 import {useNavigate} from "react-router-dom";
 import {Box, Button, TextField, Typography} from "@mui/material";
 import React, {useState} from "react";
-import {RoutesPaths} from "../../navigation/root.routes";
-import BoxedLayout from "../../components/BoxedLayout";
-import {useAppDispatch} from "../../store/store.config";
-import {appAxios} from "../../service/axios.config";
-import {uiManagerActions} from "../../store/uiManager/uiManager.action";
+import {RoutesPaths} from "../../../navigation/root.routes";
+import BoxedLayout from "../../../components/BoxedLayout";
+import {useAppDispatch} from "../../../store/store.config";
+import {appAxios} from "../../../service/axios.config";
+import {uiManagerActions} from "../../../store/uiManager/uiManager.action";
 import LoadingButton from "@mui/lab/LoadingButton";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {EmailParam, LoginParams} from "../../store/auth/types";
+import {EmailParam, LoginParams} from "../../../store/auth/types";
 
 
 const ForgotPassword = () => {

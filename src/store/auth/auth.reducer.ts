@@ -10,7 +10,15 @@ const initialState: AuthState = {
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
-
+    builder.addCase(AuthActions.logoutAction.fulfilled,(state, action) => {
+        return{
+            user: undefined,
+            isAuth:false,
+            initialized:true,
+            isError:false,
+            isLoading:false,
+        }
+    })
     builder.addCase(AuthActions.loginAction.pending, (state, action) => {
         return {
             ...state,
@@ -119,18 +127,6 @@ export const authReducer = createReducer(initialState, (builder) => {
             isLoading: false,
             isAuth: false,
             initialized: true,
-        }
-    });
-
-    builder.addCase(AuthActions.logoutAction.fulfilled, (state, action) => {
-        return {
-            ...state,
-            user: undefined,
-            token: undefined,
-            email: undefined,
-            isAuth: false,
-            isError: false,
-            isLoading: false,
         }
     });
 

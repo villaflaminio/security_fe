@@ -1,23 +1,21 @@
 import React, {useEffect, useState} from "react";
-import {LoginForm} from "../../components/LoginForm";
-import {RoutesPaths} from "../../navigation/root.routes";
-import {useAppDispatch, useAppSelector} from "../../store/store.config";
+import {LoginForm} from "../../../components/LoginForm";
+import {RoutesPaths} from "../../../navigation/root.routes";
+import {useAppDispatch, useAppSelector} from "../../../store/store.config";
 import {useNavigate} from "react-router-dom";
 import './Login.css';
 import {Box, Button, Grid, Link, Paper, Typography} from '@mui/material';
-import BoxedLayout from "../../components/BoxedLayout";
-import {SocialSignup} from "../../components/SocialSignup";
+import BoxedLayout from "../../../components/BoxedLayout";
+import {SocialSignup} from "../../../components/SocialSignup";
 const Login = () => {
-    const user = useAppSelector(state => state.authReducer.user);
     const navigate = useNavigate()
     const dispatch = useAppDispatch();
 
-    useEffect(() => {
-
-        if (user) {
-            navigate(RoutesPaths.HOME.toString())
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (user) {
+    //         navigate(RoutesPaths.HOME.toString())
+    //     }
+    // }, [user])
 
     return (
         <Grid container component="main" sx={{height: "100vh"}}>
@@ -34,7 +32,7 @@ const Login = () => {
                     backgroundPosition: "center",
                 }}
             />
-            <Grid item xs={12} sm={8} md={5} component={Paper} square>
+            <Grid item xs={12} sm={8} md={5} >
                 <BoxedLayout>
                     <Typography component="h1" variant="h5">
                         Login

@@ -7,9 +7,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import PeopleIcon from '@mui/icons-material/People';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {RoutesPaths} from "../../../navigation/root.routes";
-import {useProfileInfo} from "../hooks/useProfileInfo";
 import {UtenteModel} from "../../../models/utente.model";
-import {useLogout} from "../hooks/useLogout";
 import LogoutIcon from '@mui/icons-material/Logout';
 import {AuthActions} from "../../../store/auth/auth.action";
 import {useAppDispatch} from "../../../store/store.config";
@@ -19,6 +17,8 @@ type AdminDrawerProps = {
     mobileOpen: boolean;
     onDrawerToggle: () => void;
     onSettingsToggle: () => void;
+
+    user?: UtenteModel;
 };
 
 export const menuItems = [
@@ -44,9 +44,9 @@ const AdminDrawer = ({
                          mobileOpen,
                          onDrawerToggle,
                          onSettingsToggle,
+                         user,
                      }: AdminDrawerProps) => {
 
-    const userInfo = useProfileInfo();
     const navigate = useNavigate()
     const width = collapsed ? 104 : 280;
     const dispatch = useAppDispatch();
@@ -62,7 +62,7 @@ const AdminDrawer = ({
             <List component="nav" sx={{px: 2}}>
                 {menuItems.map((item) => (
                     <ListItemButton
-                        onClick={() => navigate(RoutesPaths.SIGN_UP.toString())}
+                        onClick={() => navigate(RoutesPaths.HOME.toString())}
                     >
                         <ListItemAvatar>
                             <Avatar sx={{color: "inherit", bgcolor: "transparent"}}>
@@ -85,19 +85,19 @@ const AdminDrawer = ({
                 >
                     <ListItemAvatar>
 
-                        {userInfo && (
-                            <Avatar alt="user" src={userInfo?.imageUrl}/>
+                        {user && (
+                            <Avatar alt="user" src={user?.imageUrl}/>
                         )}
-                        {!userInfo && (
+                        {!user && (
                             <Avatar>
                                 <AccountCircleIcon/>
                             </Avatar>
                         )}
 
                     </ListItemAvatar>
-                    {userInfo && (
+                    {user && (
                         <ListItemText
-                            primary={`${userInfo.name}`}
+                            primary={`${user.name}`}
                             sx={{
                                 display: collapsed ? "none" : "block",
                             }}
@@ -119,7 +119,7 @@ const AdminDrawer = ({
                             display: collapsed ? "none" : "block",
                         }}
                     />
-                    </ListItemButton>
+                </ListItemButton>
 
             </List>
         </Box>

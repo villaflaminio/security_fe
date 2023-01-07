@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
-import {AuthActions} from "../../store/auth/auth.action";
-import {uiManagerActions} from "../../store/uiManager/uiManager.action";
-import {RoutesPaths} from "../../navigation/root.routes";
-import {useAppDispatch} from "../../store/store.config";
+import {AuthActions} from "../../../store/auth/auth.action";
+import {uiManagerActions} from "../../../store/uiManager/uiManager.action";
+import {RoutesPaths} from "../../../navigation/root.routes";
+import {useAppDispatch} from "../../../store/store.config";
 import {useNavigate, useParams} from "react-router-dom";
-import ResetPasswordPage from "./resetPassword.page";
+import ResetPasswordPage from "../pages/resetPassword.page";
 
 const ChangePasswordHandler = () => {
 

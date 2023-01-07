@@ -8,12 +8,6 @@ type BoxedLayoutProps = {
 };
 
 const BoxedLayout = ({ children }: BoxedLayoutProps) => {
-  const [settingsOpen, setSettingsOpen] = useState(false);
-    const theme = useTheme();
-
-  const handleSettingsToggle = () => {
-    setSettingsOpen(!settingsOpen);
-  };
 
   return (
     <React.Fragment>
@@ -32,12 +26,7 @@ const BoxedLayout = ({ children }: BoxedLayoutProps) => {
         >
           <Logo sx={{ mb: 2 }} />
           {children}
-          {/*<Box>*/}
-          {/*  <SettingsDrawer*/}
-          {/*    onDrawerToggle={handleSettingsToggle}*/}
-          {/*    open={settingsOpen}*/}
-          {/*  />*/}
-          {/*</Box>*/}
+
         </Box>
     </React.Fragment>
   );

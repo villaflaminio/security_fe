@@ -12,7 +12,7 @@ function App() {
                     <Spinner/>
                 </Center>
             }>
-                <ToastProvider>
+                {/*<ToastProvider>*/}
                     <Routes>
                         <Route {...AppRoutes.INDEX}/>
                         <Route {...AppRoutes.LOGIN}/>
@@ -24,7 +24,7 @@ function App() {
                         <Route {...AppRoutes.CHANGE_PASSWORD}/>
                         <Route {...AppRoutes.FORGOT_PASSWORD}/>
                     </Routes>
-                </ToastProvider>
+                {/*</ToastProvider>*/}
             </Suspense>
         </>
     );

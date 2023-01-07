@@ -4,11 +4,11 @@ import NotFoundPage from "../screens/notFound/notFound.page";
 import HomePage from "../screens/home/home.page";
 import OAuth2RedirectHandler from "../providers/oauth2/OAuth2RedirectHandler";
 import {PrivateRoute} from "./customRouting/privateRoute";
-import ResetPasswordPage from "../screens/changePassword/resetPassword.page";
-import ChangePasswordHandler from "../screens/changePassword/changePassword.handler";
-import Login from "../screens/auth/Login";
-import {Signup} from "../screens/auth/Signup";
-import ForgotPassword from "../screens/auth/ForgotPassword";
+import ResetPasswordPage from "../screens/auth/pages/resetPassword.page";
+import ChangePasswordHandler from "../screens/auth/components/changePassword.handler";
+import Login from "../screens/auth/pages/Login";
+import {Signup} from "../screens/auth/pages/Signup";
+import ForgotPassword from "../screens/auth/pages/ForgotPassword";
 import AdminLayout from "../screens/admin/pages/Admin";
 
 

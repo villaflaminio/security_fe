@@ -1,4 +1,4 @@
-export type UtenteRoleNames = 'ROLE_ADMIN' | 'ROLE_USER'
+export type UtenteRoleNames = 'ROLE_ADMIN' | 'ROLE_USER' | 'UNAUTHENTICATED';
 
 export interface UtenteRole {
     id: number,
@@ -11,7 +11,6 @@ export interface UtenteModel{
     enabled: boolean,
     imageUrl : string,
    emailVerified: boolean,
-    roles: UtenteRole[],
 }
 
 export interface CreateUtenteModel{

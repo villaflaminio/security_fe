@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
 import {SubmitHandler, useForm} from 'react-hook-form';
-import {useAppDispatch} from "../../store/store.config";
-import {ChangePasswordParams, SignupParams} from "../../store/auth/types";
-import {useNavigate, useParams} from "react-router-dom";
-import {AuthActions} from "../../store/auth/auth.action";
-import {RoutesPaths} from "../../navigation/root.routes";
-import {uiManagerActions} from "../../store/uiManager/uiManager.action";
-
+import {useAppDispatch} from "../../../store/store.config";
+import {ChangePasswordParams} from "../../../store/auth/types";
+import { AuthActions } from '../../../store/auth/auth.action';
+import {uiManagerActions} from "../../../store/uiManager/uiManager.action";
+import {RoutesPaths} from "../../../navigation/root.routes";
+import {useNavigate} from "react-router-dom";
 
 const ResetPasswordPage = () => {
         const dispatch = useAppDispatch();

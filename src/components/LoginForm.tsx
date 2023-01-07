@@ -7,6 +7,7 @@ import {RoutesPaths} from "../navigation/root.routes";
 import {useNavigate} from 'react-router-dom';
 import {Box, Link, TextField} from "@mui/material";
 import LoadingButton from '@mui/lab/LoadingButton';
+import {AuthService} from "../service/auth.service";
 
 export function LoginForm() {
     const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ export function LoginForm() {
     const onSubmit: SubmitHandler<LoginParams> = data => handleLogin(data);
     const handleLogin = async (params: LoginParams) => {
         loadingHandler(true);
-        await dispatch(AuthActions.loginAction(params)).then((responseData) => {
+        await dispatch(AuthActions.loginAction(params)).then(async (responseData) => {
             const response = responseData.payload as LoginAuthenticateResponse
             loadingHandler(false);
             if (!response.isAuth) {
@@ -26,7 +27,9 @@ export function LoginForm() {
                 errorLoginHandler(true);
             } else {
                 console.log("Login effettuato con successo", response);
-                navigate(RoutesPaths.HOME.toString())
+                await dispatch(AuthActions.authenticateWithToken()).then(() => {
+                    navigate(RoutesPaths.HOME.toString())
+                });
             }
         })
     }
@@ -70,11 +73,11 @@ export function LoginForm() {
                     {...register("password", {required: true})}
                 />
 
-                <Box sx={{ textAlign: "right" }}>
+                <Box sx={{textAlign: "right"}}>
                     <Link
                         onClick={() => navigate(RoutesPaths.FORGOT_PASSWORD.toString())}
                     >
-                       Forgot password?
+                        Forgot password?
                     </Link>
                 </Box>
 
@@ -84,39 +87,19 @@ export function LoginForm() {
                     variant="contained"
                     color="primary"
                     loading={loading}
-                    sx={{ mt: 2 }}
+                    sx={{mt: 2}}
                 >
                     Login
                 </LoadingButton>
-                <Box alignContent={"center"}>
-                    <Box
-                        component="form"
-                        noValidate
-                        onSubmit={() => navigate(RoutesPaths.SIGN_UP.toString())}
-                    >
-                    </Box>
+            </Box>
+            <Box alignContent={"center"}>
+                <Box
+                    component="form"
+                    noValidate
+                    onSubmit={() => navigate(RoutesPaths.SIGN_UP.toString())}
+                >
                 </Box>
             </Box>
-
-            {/*<Box*/}
-            {/*    component="form"*/}
-            {/*    marginTop={3}*/}
-            {/*    noValidate*/}
-            {/*    onSubmit={handleSubmit(onSubmit)}*/}
-            {/*>*/}
-            {/*    <input className="form-item" type="email" placeholder="Email" {...register("email", {required : true })} />*/}
-            {/*    <input className="form-item" type="password"*/}
-            {/*           placeholder="Password" {...register("password", {required : true, minLength: 5 })} />*/}
-
-            {/*    <Box sx={{textAlign: "right"}}>*/}
-            {/*            <span className="signup-link">Password Lost? <Link*/}
-            {/*                onClick={() => setShowRecoveryPassword(true)}>Recovery password</Link></span>*/}
-            {/*        <SendRecuperaPasswordModal isOpen={showRecoveryPassword}*/}
-            {/*                                   onClose={() => setShowRecoveryPassword(false)}/>*/}
-            {/*    </Box>*/}
-
-            {/*    <button type="submit" className="submit-btn">Login</button>*/}
-            {/*</Box>*/}
         </>
     );
 }
