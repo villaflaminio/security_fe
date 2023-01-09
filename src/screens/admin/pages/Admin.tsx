@@ -4,7 +4,7 @@ import AdminDrawer from "../components/AdminDrawer";
 import {useSettings} from "../../../providers/SettingsProvider";
 import {useAppSelector} from "../../../store/store.config";
 import {RoutesPaths} from "../../../navigation/root.routes";
-import {useNavigate} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 import {UtenteModel} from "../../../models/utente.model";
 
 const AdminLayout = () => {
@@ -26,6 +26,7 @@ const AdminLayout = () => {
     }, [])
 
     return (
+        <>
         <Box sx={{display: "flex"}}>
             <AdminDrawer
                 collapsed={collapsed}
@@ -34,6 +35,7 @@ const AdminLayout = () => {
                 onSettingsToggle={handleSettingsToggle}
                 user={user as UtenteModel}
             />
+            <Outlet/>
             {/*<SettingsDrawer*/}
             {/*  onDrawerToggle={handleSettingsToggle}*/}
             {/*  open={settingsOpen}*/}
@@ -45,6 +47,7 @@ const AdminLayout = () => {
             {/*  </QueryWrapper>*/}
             {/*</Box>*/}
         </Box>
+        </>
     );
 };
 

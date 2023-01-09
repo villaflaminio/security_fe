@@ -27,7 +27,9 @@ export function LoginForm() {
                 console.log("Login effettuato con successo", response);
                 await dispatch(AuthActions.authenticateWithToken()).then(() => {
                     loadingHandler(false);
-                    navigate(RoutesPaths.HOME.toString())
+                    // if(response.role === 'ROLE_ADMIN') {
+                        navigate(RoutesPaths.ADMIN.toString())
+                    // }
                 });
             }
         })

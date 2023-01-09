@@ -24,7 +24,7 @@ const OAuth2RedirectHandler = () => {
 
         if (token) {
             finalizeLogin(token).then(() => {
-                navigate(RoutesPaths.HOME.toString())
+                navigate(RoutesPaths.ADMIN.toString())
             });
         } else {
             dispatch(uiManagerActions.showToast({

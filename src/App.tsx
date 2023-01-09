@@ -1,8 +1,12 @@
 import React, {Suspense} from 'react';
 import {ToastProvider} from "./providers/toast.provider";
-import {Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {AppRoutes} from "./navigation/root.routes";
 import {Center, Spinner} from "@chakra-ui/react";
+import {AdminRoutes} from "./navigation/admin.routes";
+import Login from "./screens/auth/pages/Login";
+import AdminLayout from "./screens/admin/pages/Admin";
+import {PrivateRoute} from "./navigation/customRouting/privateRoute";
 
 function App() {
     return (
@@ -14,9 +18,14 @@ function App() {
             }>
                 {/*<ToastProvider>*/}
                     <Routes>
+
                         <Route {...AppRoutes.INDEX}/>
                         <Route {...AppRoutes.LOGIN}/>
-                        <Route {...AppRoutes.HOME} />
+                        <Route {...AppRoutes.ADMIN}>
+                            <Route {...AdminRoutes.DASHBOARD}/>
+                            <Route {...AdminRoutes.USERMANAGEMENT}/>
+                            <Route {...AdminRoutes.NOT_FOUND}/>
+                        </Route>
                         <Route {...AppRoutes.NOT_FOUND}/>
                         <Route {...AppRoutes.OAUT2_REDIRECT}/>
                         <Route {...AppRoutes.SIGN_UP}/>

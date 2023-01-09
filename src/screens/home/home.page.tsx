@@ -5,7 +5,7 @@ import {AuthService} from "../../service/auth.service";
 import {AuthActions} from "../../store/auth/auth.action";
 import {RoutesPaths} from "../../navigation/root.routes";
 import {UtenteModel} from "../../models/utente.model";
-import {Navigate, useNavigate} from "react-router-dom";
+import {Navigate, Outlet, useNavigate} from "react-router-dom";
 import TestGrants from "./TestGrants";
 import NavbarComponent from "./navbar.component";
 import {Content} from "./Content";
@@ -24,11 +24,8 @@ const HomePage = () => {
     return (
         <>
             <NavbarComponent>
-                <Content/>
-                <TestGrants/>
+                <Outlet/>
             </NavbarComponent>
-
-
         </>
 
     );

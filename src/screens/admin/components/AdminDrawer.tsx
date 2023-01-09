@@ -11,6 +11,7 @@ import {UtenteModel} from "../../../models/utente.model";
 import LogoutIcon from '@mui/icons-material/Logout';
 import {AuthActions} from "../../../store/auth/auth.action";
 import {useAppDispatch} from "../../../store/store.config";
+import {AdminPaths, AdminRoutes} from "../../../navigation/admin.routes";
 
 type AdminDrawerProps = {
     collapsed: boolean;
@@ -62,7 +63,7 @@ const AdminDrawer = ({
             <List component="nav" sx={{px: 2}}>
                 {menuItems.map((item) => (
                     <ListItemButton
-                        onClick={() => navigate(RoutesPaths.HOME.toString())}
+                        onClick={() => navigate(AdminPaths.DASHBOARD.toString())}
                         key={(item.key)}
                     >
                         <ListItemAvatar>
