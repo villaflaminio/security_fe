@@ -26,17 +26,17 @@ export const menuItems = [
     {
         icon: HomeIcon,
         key: "home",
-        path: "/admin",
+        path: RoutesPaths.ADMIN.toString(),
     },
     {
         icon: BarChartIcon,
         key: "dashboard",
-        path: "/admin/dashboard",
+        path: AdminPaths.DASHBOARD.toString(),
     },
     {
         icon: PeopleIcon,
         key: "userManagement",
-        path: "/admin/user-management",
+        path: AdminPaths.USERMANAGEMENT.toString(),
     }
 ];
 
@@ -63,7 +63,7 @@ const AdminDrawer = ({
             <List component="nav" sx={{px: 2}}>
                 {menuItems.map((item) => (
                     <ListItemButton
-                        onClick={() => navigate(AdminPaths.DASHBOARD.toString())}
+                        onClick={() => navigate(item.path)}
                         key={(item.key)}
                     >
                         <ListItemAvatar>

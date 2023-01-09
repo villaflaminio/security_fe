@@ -11,6 +11,7 @@ import {Signup} from "../screens/auth/pages/Signup";
 import ForgotPassword from "../screens/auth/pages/ForgotPassword";
 import AdminLayout from "../screens/admin/pages/Admin";
 import {AdminRoute} from "./customRouting/adminRoute";
+import UserManagement from "../screens/admin/pages/UserManagement";
 
 
 export type AdminRoutes = 'DASHBOARD' | 'USERMANAGEMENT' | 'NOT_FOUND' ;
@@ -28,7 +29,7 @@ export const AdminRoutes: Record<AdminRoutes, PathRouteProps> = {
     },
     USERMANAGEMENT: {
         path: AdminPaths.USERMANAGEMENT.toString(),
-        element: <ResetPasswordPage/>
+        element: <UserManagement/>
     },
     NOT_FOUND: {
         path: AdminPaths.NOT_FOUND.toString(),
