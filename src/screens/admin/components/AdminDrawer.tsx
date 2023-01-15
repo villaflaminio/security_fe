@@ -26,7 +26,7 @@ export const menuItems = [
     {
         icon: HomeIcon,
         key: "home",
-        path: RoutesPaths.ADMIN.toString(),
+        path: AdminPaths.DASHBOARD.toString(),
     },
     {
         icon: BarChartIcon,

@@ -19,40 +19,40 @@ const UserManagement = () => {
     const responseArray  = [
       {
           "id": "1",
-          "avatar": "",
+          "imageUrl": "https://4.bp.blogspot.com/-klQjV5L27_s/T73fozhXluI/AAAAAAAAAkI/_75K0D7Hpqw/s1600/smiley-face2.jpg",
           "disabled": false,
           "email": "rhys@arriaga.com",
-          "firstName": "Rhys",
+          "name": "Rhys",
           "gender": "M",
           "lastName": "Arriaga",
           "role": "Admin"
       },
       {
           "id": "2",
-          "avatar": "",
+          "imageUrl": "https://4.bp.blogspot.com/-klQjV5L27_s/T73fozhXluI/AAAAAAAAAkI/_75K0D7Hpqw/s1600/smiley-face2.jpg",
           "disabled": false,
           "email": "laura@core.com",
-          "firstName": "Laura",
+          "name": "Laura",
           "gender": "F",
           "lastName": "Core",
           "role": "Member"
       },
       {
           "id": "3",
-          "avatar": "",
+          "imageUrl": "https://4.bp.blogspot.com/-klQjV5L27_s/T73fozhXluI/AAAAAAAAAkI/_75K0D7Hpqw/s1600/smiley-face2.jpg",
           "disabled": false,
           "email": "joshua@jagger.com",
-          "firstName": "Joshua",
+          "name": "Joshua",
           "gender": "M",
           "lastName": "Jagger",
           "role": "Member"
       },
       {
           "id": "4",
-          "avatar": "",
+          "imageUrl": "https://4.bp.blogspot.com/-klQjV5L27_s/T73fozhXluI/AAAAAAAAAkI/_75K0D7Hpqw/s1600/smiley-face2.jpg",
           "disabled": true,
           "email": "jason@jimenez.com",
-          "firstName": "Jason",
+          "name": "Jason",
           "gender": "M",
           "lastName": "Jimenez",
           "role": "Member"
@@ -62,7 +62,7 @@ const UserManagement = () => {
           "avatar": "",
           "disabled": true,
           "email": "rhonda@mcguire.com",
-          "firstName": "Rhonda",
+          "name": "Rhonda",
           "gender": "F",
           "lastName": "Mcguire",
           "role": "Member"
@@ -72,7 +72,7 @@ const UserManagement = () => {
           "avatar": "",
           "disabled": false,
           "email": "aaron@moreno.com",
-          "firstName": "Aaron",
+          "name": "Aaron",
           "gender": "M",
           "lastName": "Moreno",
           "role": "Member"
@@ -82,7 +82,7 @@ const UserManagement = () => {
           "avatar": "",
           "disabled": false,
           "email": "carley@murray.com",
-          "firstName": "Carley",
+          "name": "Carley",
           "gender": "F",
           "lastName": "Murray",
           "role": "Member"
@@ -92,7 +92,7 @@ const UserManagement = () => {
           "avatar": "",
           "disabled": false,
           "email": "cherise@owen.com",
-          "firstName": "Cherise",
+          "name": "Cherise",
           "gender": "F",
           "lastName": "Owen",
           "role": "Member"
@@ -102,7 +102,7 @@ const UserManagement = () => {
           "avatar": "",
           "disabled": false,
           "email": "nathan@romero.com",
-          "firstName": "Nathan",
+          "name": "Nathan",
           "gender": "M",
           "lastName": "Romero",
           "role": "Member"
@@ -129,6 +129,7 @@ const UserManagement = () => {
       }
   ]
     const data = responseArray.map((item: any) => ({ ...item, id: item.id.toString() }));
+    const [loading, setLoading] = useState(false)
 
 
   const handleAddUser = async (user: Partial<UtenteModel>) => {
@@ -200,6 +201,17 @@ const UserManagement = () => {
   const handleSelectedChange = (newSelected: number[]) => {
     setSelected(newSelected);
   };
+    const fetchData = async (pageIndex:number,pageSize:number,entity?:any,sortDirection?:string,sortField?:string) => {
+        setLoading(true)
+        await dispatch(HomeAction.fetchProprietariAction({
+            entity,
+            page: pageIndex,
+            size: pageSize,
+            sortDirection: sortDirection,
+            sortField: sortField
+        }))
+        setLoading(false)
+    }
 
   return (
     <React.Fragment>

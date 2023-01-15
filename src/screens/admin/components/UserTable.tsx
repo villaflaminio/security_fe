@@ -150,9 +150,14 @@ const UserRow = ({
       </TableCell>
       <TableCell>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Avatar sx={{ mr: 3 }}>
-            <AccountCircleIcon />
-          </Avatar>
+          {user && (
+              <Avatar alt="user" src={user?.imageUrl}/>
+          )}
+          {!user && (
+              <Avatar>
+                <AccountCircleIcon/>
+              </Avatar>
+          )}
           <Box>
             <Typography component="div" variant="h6">
               {`${user.name} `}
@@ -304,16 +309,16 @@ const UserTable = ({
               ))}
           </TableBody>
         </Table>
+        <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={users.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+        />
       </TableContainer>
-      {/*<TablePagination*/}
-      {/*  rowsPerPageOptions={[5, 10, 25]}*/}
-      {/*  component="div"*/}
-      {/*  count={users.length}*/}
-      {/*  rowsPerPage={rowsPerPage}*/}
-      {/*  page={page}*/}
-      {/*  onPageChange={handleChangePage}*/}
-      {/*  onRowsPerPageChange={handleChangeRowsPerPage}*/}
-      {/*/>*/}
     </React.Fragment>
   );
 };
