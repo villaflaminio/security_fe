@@ -1,144 +1,98 @@
 import {createReducer} from '@reduxjs/toolkit';
+import {UsersState} from "./types";
+import {UsersActions} from "./users.action";
+import {UsersTableAction} from "./usersTable.action";
 
-const initialState: AuthState = {
-    isAuth: false,
+const initialState: UsersState = {
     isError: false,
     isLoading: false,
-    initialized: false,
+    usersPaginated:{
+        data: [],
+        totalElements: 0,
+        totalPages: 0,
+        pageSize:10,
+        pageIndex:0,
+        filters: {}
+    },
+
 };
 
 export const usersReducer = createReducer(initialState, (builder) => {
-    builder.addCase(AuthActions.logoutAction.fulfilled,(state, action) => {
-        return{
-            user: undefined,
-            isAuth:false,
-            initialized:true,
-            isError:false,
-            isLoading:false,
-        }
-    })
-    builder.addCase(AuthActions.loginAction.pending, (state, action) => {
+    //LIST PROPRIETARI
+    builder.addCase(UsersActions.fetchUsersAction.pending, (state, action) => {
         return {
             ...state,
             isLoading: true,
-            isError: false
+            isError: false,
         }
     });
 
-    builder.addCase(AuthActions.loginAction.fulfilled, (state, action) => {
+    builder.addCase(UsersActions.fetchUsersAction.rejected, (state, action) => {
         return {
             ...state,
-            isAuth: action.payload.isAuth,
-            token: action.payload.token,
-            isError: false,
             isLoading: false,
-            initialized: true,
-        }
-    });
-
-    builder.addCase(AuthActions.loginAction.rejected, (state, action) => {
-        return {
-            ...state,
-            email: undefined,
-            isAuth: false,
-            isError: false,
-            isLoading: false,
-            initialized: true
-        }
-    });
-
-    builder.addCase(AuthActions.authenticateWithToken.fulfilled, (state, action) => {
-        return {
-            ...state,
-            isAuth: action.payload.isAuth,
-            token: action.payload.token,
-            user: action.payload.user,
-            isError: false,
-            isLoading: false,
-            initialized: true,
-        }
-    });
-
-    builder.addCase(AuthActions.authenticateWithToken.pending, (state, action) => {
-        return {
-            ...state,
-            isError: false,
-            isLoading: true,
-        }
-    });
-
-    builder.addCase(AuthActions.authenticateWithToken.rejected, (state, action) => {
-        return {
-            ...state,
             isError: true,
-            isLoading: false,
-            initialized: true
         }
     });
 
-
-    builder.addCase(AuthActions.loginWithOAuth2.fulfilled, (state, action) => {
+    builder.addCase(UsersActions.fetchUsersAction.fulfilled, (state, action) => {
+        const {content, totalElements, totalPages} = action.payload;
         return {
             ...state,
-            isAuth: action.payload.isAuth,
-            token: action.payload.token,
-            user: action.payload.user,
+            isLoading: false,
             isError: false,
-            isLoading: false,
-            initialized: true,
+            usersPaginated: {
+                ...state.usersPaginated,
+                data: content,
+                totalElements,
+                totalPages
+            }
         }
     });
 
-    builder.addCase(AuthActions.loginWithOAuth2.pending, (state, action) => {
+    //Utenti
+    builder.addCase(UsersTableAction.setPageIndexAction, (state, action) => {
         return {
             ...state,
-            isError: false,
-            isLoading: true,
+            usersPaginated: {
+                ...state.usersPaginated,
+                pageIndex: action.payload
+            }
         }
     });
 
-    builder.addCase(AuthActions.loginWithOAuth2.rejected, (state, action) => {
+    builder.addCase(UsersTableAction.setPageSizeAction, (state, action) => {
         return {
             ...state,
-            isError: true,
-            isLoading: false,
-            initialized: true
+            usersPaginated: {
+                ...state.usersPaginated,
+                pageSize: action.payload
+            }
         }
     });
 
-
-    builder.addCase(AuthActions.getCurrentUser.fulfilled, (state, action) => {
+    builder.addCase(UsersTableAction.setFiltersAction, (state, action) => {
         return {
             ...state,
-            user: action.payload,
-            isError: false,
-            isLoading: false,
-            initialized: true,
+            usersPaginated:{
+                ...state.usersPaginated,
+                filters:{
+                    ...state.usersPaginated.filters,
+                    ...action.payload
+                }
+            }
         }
     });
 
-    builder.addCase(AuthActions.signUp.fulfilled, (state, action) => {
+    builder.addCase(UsersTableAction.setOrderingFiltersAction, (state, action) => {
         return {
             ...state,
-            user: action.payload,
-            isError: false,
-            isLoading: false,
-            isAuth: false,
-            initialized: true,
+            usersPaginated:{
+                ...state.usersPaginated,
+                ...action.payload
+            }
         }
     });
-
-    builder.addCase(AuthActions.getJwtFromResetPasswordTokenAction.fulfilled, (state, action) => {
-        return {
-            ...state,
-            isAuth: action.payload.isAuth,
-            token: action.payload.token,
-            isError: false,
-            isLoading: false,
-            initialized: true,
-        }
-    });
-
     builder.addDefaultCase((state, action) => {
         return state;
     });

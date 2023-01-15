@@ -3,12 +3,14 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {authReducer} from "./auth/auth.reducer";
 import {uiManagerReducer} from "./uiManager/uiManager.reducer";
 import Interceptor from "../service/interceptor/auth.interceptor";
+import {usersReducer} from "./users/users.reducer";
 //viene utilizzato per creare lo store
 export const store = configureStore({
     reducer: {
         //Add yours reducers
         authReducer,
-        uiManagerReducer
+        uiManagerReducer,
+        usersReducer
     }
 })
 

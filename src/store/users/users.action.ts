@@ -16,9 +16,9 @@ export const enum USERS_ACTION {
 
 //how it works?
 // createAsyncThunk is a function that accepts an action type string and a payload creator function.
-const fetchUtentiAction = createAsyncThunk<FetchUsersResponse,FetchUsersParamsAndBody>(USERS_ACTION.FETCH_UTENTI, async (params,thunkAPI) => {
+const fetchUsersAction = createAsyncThunk<FetchUsersResponse,FetchUsersParamsAndBody>(USERS_ACTION.FETCH_UTENTI, async (params,thunkAPI) => {
     try {
-        return await UsersService.fetchUtenti(params);
+        return await UsersService.fetchUsers(params);
     } catch (e: any) {
         console.log('[ERROR] fetchUtentiAction',e);
 
@@ -34,5 +34,5 @@ const fetchUtentiAction = createAsyncThunk<FetchUsersResponse,FetchUsersParamsAn
 });
 
 export const UsersActions = {
-    fetchUtentiAction
+    fetchUsersAction
 }

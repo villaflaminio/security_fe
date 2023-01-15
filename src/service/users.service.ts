@@ -3,7 +3,7 @@ import {FetchUsersParamsAndBody, PaginatedRequestParamsAndBody} from "../store/u
 import {FetchUsersResponse} from "../models/users.model";
 import {appAxios} from "./axios.config";
 
-const fetchUtenti = async (requestParams: FetchUsersParamsAndBody): Promise<FetchUsersResponse> => {
+const fetchUsers = async (requestParams: FetchUsersParamsAndBody): Promise<FetchUsersResponse> => {
     console.log('Request [fetchUtenti] params:', requestParams);
     const params:PaginatedRequestParamsAndBody = {
         page: requestParams.page,
@@ -50,7 +50,7 @@ const fetchUtenti = async (requestParams: FetchUsersParamsAndBody): Promise<Fetc
 
 
 export const UsersService = {
-    fetchUtenti,
+    fetchUsers,
     // createUtente,
     // deleteUtente
 }
