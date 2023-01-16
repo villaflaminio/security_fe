@@ -100,6 +100,8 @@ const AdminDrawer = ({
                     {user && (
                         <ListItemText
                             primary={`${user.name}`}
+                            secondary={`${user.email}` + (user?.role)}
+
                             sx={{
                                 display: collapsed ? "none" : "block",
                             }}
