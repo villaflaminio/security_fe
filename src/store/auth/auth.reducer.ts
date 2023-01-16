@@ -7,16 +7,25 @@ const initialState: AuthState = {
     isError: false,
     isLoading: false,
     initialized: false,
+    user : {
+        id: 0,
+        email: '',
+        name: '',
+        enabled: false,
+        role: [{role : ''}],
+        imageUrl: '',
+        emailVerified: false,
+    }
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
-    builder.addCase(AuthActions.logoutAction.fulfilled,(state, action) => {
-        return{
+    builder.addCase(AuthActions.logoutAction.fulfilled, (state, action) => {
+        return {
             user: undefined,
-            isAuth:false,
-            initialized:true,
-            isError:false,
-            isLoading:false,
+            isAuth: false,
+            initialized: true,
+            isError: false,
+            isLoading: false,
         }
     })
     builder.addCase(AuthActions.loginAction.pending, (state, action) => {

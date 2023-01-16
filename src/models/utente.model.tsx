@@ -11,6 +11,9 @@ export interface UtenteModel{
     enabled: boolean,
     imageUrl : string,
    emailVerified: boolean,
+    role: [
+        { role: string }
+    ],
 }
 
 export interface CreateUtenteModel{

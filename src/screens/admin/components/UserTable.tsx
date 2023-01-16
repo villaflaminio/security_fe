@@ -172,7 +172,7 @@ const UserRow = ({
                 </Box>
             </TableCell>
             <TableCell align="center">{user.enabled}</TableCell>
-            <TableCell align="center">USER</TableCell>
+            <TableCell align="center">{user.role}</TableCell>
             <TableCell align="center">
                 {user.enabled ? (
                     <Chip label="Disabled"/>
@@ -190,7 +190,6 @@ const UserRow = ({
                     aria-controls="user-row-menu"
                     aria-haspopup="true"
                     aria-expanded={openActions ? "true" : "false"}
-                    disabled={processing}
                     onClick={handleOpenActions}
                 >
                     <MoreVertIcon/>
@@ -214,13 +213,13 @@ const UserRow = ({
                         <ListItemIcon>
                             <EditIcon/>
                         </ListItemIcon>{" "}
-                        {("common.edit")}
+                        {("edit")}
                     </MenuItem>
                     <MenuItem onClick={handleDelete}>
                         <ListItemIcon>
                             <DeleteOutlineIcon/>
                         </ListItemIcon>{" "}
-                        {("common.delete")}
+                        {("delete")}
                     </MenuItem>
                 </Menu>
             </TableCell>

@@ -1,4 +1,5 @@
 import {UtenteModel, UtenteRoleNames} from "../../models/utente.model";
+import {bool} from "yup";
 
 export interface AuthState {
     isAuth: boolean,
@@ -37,6 +38,12 @@ export interface SignupParams {
     confirmPassword: string
 }
 
+export interface ModifyUserParams {
+    email: string,
+    name: string,
+    role : string,
+    disabled : boolean
+}
 export interface LoginAuthenticateResponse {
     isAuth: boolean,
     id?: number,
