@@ -7,15 +7,6 @@ const initialState: AuthState = {
     isError: false,
     isLoading: false,
     initialized: false,
-    user : {
-        id: 0,
-        email: '',
-        name: '',
-        enabled: false,
-        role: [{role : ''}],
-        imageUrl: '',
-        emailVerified: false,
-    }
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
