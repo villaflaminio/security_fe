@@ -100,7 +100,7 @@ const AdminDrawer = ({
                     {user && (
                         <ListItemText
                             primary={`${user.name}`}
-                            secondary={`${user.email}` + (user?.role)}
+                            secondary={`${user.email}`}
 
                             sx={{
                                 display: collapsed ? "none" : "block",
@@ -108,7 +108,7 @@ const AdminDrawer = ({
                         />
                     )}
                 </ListItemButton>
-
+                {(user?.role)}
                 <ListItemButton
                     onClick={logout}
                 >

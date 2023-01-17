@@ -15,14 +15,17 @@ export interface AuthState {
 export interface LoginResponseDto {
     token: string,
     refreshToken: string,
-    role: [
-        { role: string }
-    ],
+    role: Role[],
     duration: number,
     email: string
     id: number
 
 }
+
+export interface Role {
+    authority: string
+}
+
 
 export interface LoginParams {
     email: string

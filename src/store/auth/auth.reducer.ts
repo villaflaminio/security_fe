@@ -1,6 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {AuthState} from './types';
 import {AuthActions} from "./auth.action";
+import {UtenteRoleNames} from "../../models/utente.model";
 
 const initialState: AuthState = {
     isAuth: false,
@@ -32,6 +33,7 @@ export const authReducer = createReducer(initialState, (builder) => {
             ...state,
             isAuth: action.payload.isAuth,
             token: action.payload.token,
+            role: action.payload.role,
             isError: false,
             isLoading: false,
             initialized: true,
@@ -50,6 +52,7 @@ export const authReducer = createReducer(initialState, (builder) => {
     });
 
     builder.addCase(AuthActions.authenticateWithToken.fulfilled, (state, action) => {
+
         return {
             ...state,
             isAuth: action.payload.isAuth,

@@ -6,7 +6,7 @@ import {
     LoginParams,
     LoginResponseDto, SignupParams
 } from "../store/auth/types";
-import {UtenteModel, UtenteRoleNames} from "../models/utente.model";
+import {userMe, UtenteModel, UtenteRoleNames} from "../models/utente.model";
 import {AxiosError} from "axios/index";
 
 const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateResponse> => {
@@ -25,7 +25,7 @@ const loginMethod = async (params: LoginParams): Promise<LoginAuthenticateRespon
 
             let userRole: UtenteRoleNames = 'ROLE_USER'
 
-            if (response.data.role && response.data.role.filter(e => e.role === 'ROLE_ADMIN').length > 0) {
+            if (response.data.role && response.data.role.find(role => role.authority === "ROLE_ADMIN" )) {
                 userRole = 'ROLE_ADMIN'
                 console.log('Request [loginRequest] admin role')
             }
@@ -61,11 +61,32 @@ const signUp = async (params: SignupParams): Promise<UtenteModel> => {
 const getCurrentUser = async (): Promise<UtenteModel> => {
     try {
         console.log('Request [getCurrentUser] params:', AuthService.getAccessToken());
-        const response: AxiosResponse<UtenteModel> = await appAxios.get(`/api/user/me`
+        const response: AxiosResponse<userMe> = await appAxios.get(`/api/user/me`
         ).catch((error: AxiosError) => {
             throw error;
         });
-        return response.data;
+
+        if (response && response.data) {
+            //transform response in UtenteModel
+            let userRole: UtenteRoleNames = 'ROLE_USER'
+
+            if (response.data.roles && response.data.roles.find(role => role.name === "ROLE_ADMIN" )) {
+
+                userRole = 'ROLE_ADMIN'
+                console.log('Request [loginRequest] admin role')
+            }
+
+            return {
+                id: response.data.id,
+                name: response.data.name,
+                email: response.data.email,
+                role: userRole,
+                emailVerified: response.data.emailVerified,
+                enabled: true,
+                imageUrl: response.data.imageUrl
+            }
+        }
+        throw new Error('Bad credentials')
     } catch (e) {
         throw e
     }
@@ -130,7 +151,7 @@ const getJwtFromResetPasswordToken = async (token: string): Promise<LoginAuthent
 
         let userRole: UtenteRoleNames = 'ROLE_USER'
 
-        if (response.data.role && response.data.role.filter(e => e.role === 'ROLE_ADMIN').length > 0) {
+        if (response.data.role && response.data.role.find(role => role.authority === "ROLE_ADMIN" )) {
             userRole = 'ROLE_ADMIN'
             console.log('Request [loginRequest] admin role')
         }
