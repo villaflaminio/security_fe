@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="626e44e2-ac97-4e5b-8b80-0f6ef595480d" name="Changes" comment="fix perdita dati store">
+    <list default="true" id="626e44e2-ac97-4e5b-8b80-0f6ef595480d" name="Changes" comment="user enable">
+      <change afterPath="$PROJECT_DIR$/src/screens/admin/pages/Profile.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/admin.routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/admin.routes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/admin/components/AdminDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/components/AdminDrawer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/admin/components/UserTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/components/UserTable.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,22 +28,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/flaminiovilla/my_space/security_fe/src/screens/admin/components&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/flaminiovilla/my_space/security_fe/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/flaminiovilla/my_space/security_fe/src/screens/admin/pages",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/flaminiovilla/my_space/security_fe/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -49,10 +54,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/screens/admin/pages" />
       <recent name="$PROJECT_DIR$/src/screens/admin/components" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.debug">
+  <component name="RunManager" selected="npm.start">
     <configuration name="debug" type="JavascriptDebugType" uri="http://localhost:3000/">
       <method v="2" />
     </configuration>
@@ -83,7 +89,7 @@
       <workItem from="1673903883635" duration="7325000" />
       <workItem from="1674286320231" duration="43000" />
       <workItem from="1674286443695" duration="9240000" />
-      <workItem from="1674313748049" duration="14373000" />
+      <workItem from="1674313748049" duration="18541000" />
     </task>
     <task id="LOCAL-00001" summary="config file">
       <created>1673902221371</created>
@@ -141,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674327945009</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="user enable">
+      <created>1674328780399</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1674328780399</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +169,7 @@
     <MESSAGE value="modify user dialog" />
     <MESSAGE value="user dialog handle real modify" />
     <MESSAGE value="fix perdita dati store" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix perdita dati store" />
+    <MESSAGE value="user enable" />
+    <option name="LAST_COMMIT_MESSAGE" value="user enable" />
   </component>
 </project>

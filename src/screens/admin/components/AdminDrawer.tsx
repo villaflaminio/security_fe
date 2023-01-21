@@ -83,7 +83,7 @@ const AdminDrawer = ({
             <Box sx={{flexGrow: 1}}/>
             <List component="nav" sx={{p: 2}}>
                 <ListItemButton
-                    onClick={() => navigate(RoutesPaths.SIGN_UP.toString())}
+                    onClick={() => navigate(AdminPaths.PROFILE.toString())}
                 >
                     <ListItemAvatar>
 

@@ -115,8 +115,7 @@ const UserRow = ({
         setAnchorEl(null);
     };
 
-    const handleDelete = () => {
-        handleCloseActions();
+    const handleDeactive = () => {
         onDelete([user.id]);
     };
 
@@ -215,11 +214,11 @@ const UserRow = ({
                         </ListItemIcon>{" "}
                         {("edit")}
                     </MenuItem>
-                    <MenuItem onClick={handleDelete}>
+                    <MenuItem onClick={handleDeactive}>
                         <ListItemIcon>
                             <DeleteOutlineIcon/>
                         </ListItemIcon>{" "}
-                        {("delete")}
+                        {("deactive")}
                     </MenuItem>
                 </Menu>
             </TableCell>
