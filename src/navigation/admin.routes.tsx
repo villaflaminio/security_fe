@@ -7,9 +7,9 @@ import UserManagement from "../screens/admin/pages/UserManagement";
 import ProfileAdmin from "../screens/admin/pages/Profile";
 
 
-export type AdminRoute = 'DASHBOARD' | 'USERMANAGEMENT' | 'NOT_FOUND' | 'PROFILE' | 'PASSWORD' | 'INFORMATION';
+export type AdminRoutes = 'DASHBOARD' | 'USERMANAGEMENT' | 'NOT_FOUND' | 'PROFILE' | 'PASSWORD' | 'INFORMATION';
 
-export const AdminPaths: Record<AdminRoute, String> = {
+export const AdminPaths: Record<AdminRoutes, String> = {
     DASHBOARD: 'dashboard',
     USERMANAGEMENT: 'user-management',
     INFORMATION: 'information',
@@ -18,7 +18,7 @@ export const AdminPaths: Record<AdminRoute, String> = {
     NOT_FOUND: '*',
 }
 
-export const AdminRoutes: Record<AdminRoute, PathRouteProps> = {
+export const AdminRoutes: Record<AdminRoutes, PathRouteProps> = {
     DASHBOARD: {
         path: AdminPaths.DASHBOARD.toString(),
         element: <ResetPasswordPage/>

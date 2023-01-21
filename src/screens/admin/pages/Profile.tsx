@@ -56,17 +56,17 @@ const ProfileAdmin = () => {
         </Grid>
         <Grid item xs={12} md={8} marginTop={3}>
           <Box sx={{ mb: 4 }}>
-            <Tabs aria-label="profile nav tabs" value={false}>
-              {profileMenuItems.map((item) => (
-                <Tab
-                  key={item.key}
-                  end={true}
-                  component={NavLink}
-                  label={(item.key)}
-                  to={item.path}
-                />
-              ))}
-            </Tabs>
+            {/*<Tabs aria-label="profile nav tabs" value={false}>*/}
+            {/*  {profileMenuItems.map((item) => (*/}
+            {/*    <Tab*/}
+            {/*      key={item.key}*/}
+            {/*      end={true}*/}
+            {/*      component={NavLink}*/}
+            {/*      label={(item.key)}*/}
+            {/*      to={item.path}*/}
+            {/*    />*/}
+            {/*  ))}*/}
+            {/*</Tabs>*/}
           </Box>
             <Outlet />
         </Grid>

@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="626e44e2-ac97-4e5b-8b80-0f6ef595480d" name="Changes" comment="user enable">
-      <change afterPath="$PROJECT_DIR$/src/screens/admin/pages/Profile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+    <list default="true" id="626e44e2-ac97-4e5b-8b80-0f6ef595480d" name="Changes" comment="profile page non funzionante">
       <change beforePath="$PROJECT_DIR$/src/navigation/admin.routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/admin.routes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/admin/components/AdminDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/components/AdminDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/admin/components/UserTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/components/UserTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/admin/pages/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/pages/Profile.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +85,7 @@
       <workItem from="1673903883635" duration="7325000" />
       <workItem from="1674286320231" duration="43000" />
       <workItem from="1674286443695" duration="9240000" />
-      <workItem from="1674313748049" duration="18541000" />
+      <workItem from="1674313748049" duration="18895000" />
     </task>
     <task id="LOCAL-00001" summary="config file">
       <created>1673902221371</created>
@@ -154,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674328780399</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="profile page non funzionante">
+      <created>1674339899001</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1674339899001</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +173,7 @@
     <MESSAGE value="user dialog handle real modify" />
     <MESSAGE value="fix perdita dati store" />
     <MESSAGE value="user enable" />
-    <option name="LAST_COMMIT_MESSAGE" value="user enable" />
+    <MESSAGE value="profile page non funzionante" />
+    <option name="LAST_COMMIT_MESSAGE" value="profile page non funzionante" />
   </component>
 </project>
