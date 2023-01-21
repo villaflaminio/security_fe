@@ -33,11 +33,6 @@ const headCells: HeadCell[] = [
         label: "user",
     },
     {
-        id: "gender",
-        align: "center",
-        label: "gender",
-    },
-    {
         id: "role",
         align: "center",
         label: "role",
@@ -171,8 +166,13 @@ const UserRow = ({
                     </Box>
                 </Box>
             </TableCell>
-            <TableCell align="center">{user.enabled}</TableCell>
-            <TableCell align="center">{user.role}</TableCell>
+            <TableCell align="center">
+                {user.roles && user.roles.length > 0 ? (
+                    <Chip label={user.roles[0].name}/>
+                ) : (
+                    <Chip label="No role"/>
+                )}
+            </TableCell>
             <TableCell align="center">
                 {user.enabled ? (
                     <Chip label="Disabled"/>

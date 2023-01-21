@@ -40,6 +40,14 @@ export interface SignupParams {
     password: string
     confirmPassword: string
 }
+export interface UserDialogParams {
+    email: string
+    name: string
+    role : string
+    disabled : boolean
+
+}
+
 
 export interface ModifyUserParams {
     email: string,

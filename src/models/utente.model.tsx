@@ -13,7 +13,7 @@ export interface UtenteModel{
     enabled: boolean,
     imageUrl : string,
     emailVerified: boolean,
-    role: UtenteRoleNames,
+    roles: RoleBE[]
 }
 
 export interface userMe {

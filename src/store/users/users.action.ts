@@ -33,6 +33,23 @@ const fetchUsersAction = createAsyncThunk<FetchUsersResponse,FetchUsersParamsAnd
     }
 });
 
+const alterUserAction = createAsyncThunk<FetchUsersResponse,FetchUsersParamsAndBody>(USERS_ACTION.FETCH_UTENTI, async (params,thunkAPI) => {
+    try {
+        return await UsersService.alterUser(params);
+    } catch (e: any) {
+        console.log('[ERROR] fetchUtentiAction',e);
+
+        thunkAPI.dispatch(uiManagerActions.showToast({
+            title: 'Si è verificato un errore',
+            description: 'Non siamo riusciti ad ottenere i dati degli utenti',
+            duration: 3000,
+            status: 'error'
+        }));
+
+        throw e;
+    }
+}
+
 export const UsersActions = {
     fetchUsersAction
 }

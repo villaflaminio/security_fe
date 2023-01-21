@@ -108,7 +108,6 @@ const AdminDrawer = ({
                         />
                     )}
                 </ListItemButton>
-                {(user?.role)}
                 <ListItemButton
                     onClick={logout}
                 >

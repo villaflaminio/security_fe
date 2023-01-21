@@ -68,19 +68,13 @@ const getCurrentUser = async (): Promise<UtenteModel> => {
 
         if (response && response.data) {
             //transform response in UtenteModel
-            let userRole: UtenteRoleNames = 'ROLE_USER'
 
-            if (response.data.roles && response.data.roles.find(role => role.name === "ROLE_ADMIN" )) {
-
-                userRole = 'ROLE_ADMIN'
-                console.log('Request [loginRequest] admin role')
-            }
 
             return {
                 id: response.data.id,
                 name: response.data.name,
                 email: response.data.email,
-                role: userRole,
+                roles: response.data.roles,
                 emailVerified: response.data.emailVerified,
                 enabled: true,
                 imageUrl: response.data.imageUrl

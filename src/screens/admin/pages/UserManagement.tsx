@@ -5,6 +5,7 @@ import UserTable from "../components/UserTable";
 import {useAppDispatch, useAppSelector} from "../../../store/store.config";
 import {UsersActions} from "../../../store/users/users.action";
 import {UsersTableAction} from "../../../store/users/usersTable.action";
+ import UserDialog from "../components/UserDialog";
 
 const UserManagement = () => {
 
@@ -18,7 +19,7 @@ const UserManagement = () => {
     // const { addUser, isAdding } = useAddUser();
     // const { deleteUsers, isDeleting } = useDeleteUsers();
     // const { isUpdating, updateUser } = useUpdateUser();
-    const processing = true;
+    const processing = false;
     const [loading, setLoading] = useState(false)
     const {usersPaginated} = useAppSelector(state => state.usersReducer)
 
@@ -152,16 +153,14 @@ const UserManagement = () => {
             {/*  open={openConfirmDeleteDialog}*/}
             {/*  title={t("common.confirmation")}*/}
             {/*/>*/}
-            {/*{openUserDialog && (*/}
-            {/*  <UserDialog*/}
-            {/*    onAdd={handleAddUser}*/}
-            {/*    onClose={handleCloseUserDialog}*/}
-            {/*    onUpdate={handleUpdateUser}*/}
-            {/*    open={openUserDialog}*/}
-            {/*    processing={processing}*/}
-            {/*    user={userUpdated}*/}
-            {/*  />*/}
-            {/*)}*/}
+            {openUserDialog && (
+              <UserDialog
+                onClose={handleCloseUserDialog}
+                open={openUserDialog}
+                processing={processing}
+                user={userUpdated}
+              />
+            )}
         </React.Fragment>
     );
 };

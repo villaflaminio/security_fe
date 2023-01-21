@@ -24,6 +24,27 @@ const fetchUsers = async (requestParams: FetchUsersParamsAndBody): Promise<Fetch
     }
     throw new Error('Error during fetchUtenti')
 }
+const alterUser = async (requestParams: FetchUsersParamsAndBody): Promise<FetchUsersResponse> => {
+    console.log('Request [fetchUtenti] params:', requestParams);
+    const params:PaginatedRequestParamsAndBody = {
+        page: requestParams.page,
+        size: requestParams.size ,
+        //FIXED BY DEFAULT
+        sortField: requestParams.sortField,
+        sortDirection: requestParams.sortDirection,
+    }
+    const response: AxiosResponse<FetchUsersResponse> = await appAxios.post(`/api/admin/users/filter`,{
+        ...requestParams.entity
+    },{
+        params
+    });
+
+    console.log('Request [fetchUtenti] ', response.data);
+    if (response && response.data) {
+        return response.data
+    }
+    throw new Error('Error during fetchUtenti')
+}
 
 //
 // const createUtente = async (utenteModel: CreateUtenteModel): Promise<void> => {
