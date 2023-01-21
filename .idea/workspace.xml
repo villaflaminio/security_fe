@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="626e44e2-ac97-4e5b-8b80-0f6ef595480d" name="Changes" comment="user dialog handle real modify">
+    <list default="true" id="626e44e2-ac97-4e5b-8b80-0f6ef595480d" name="Changes" comment="fix perdita dati store">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/admin/components/AdminDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/components/AdminDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/admin/components/UserTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/components/UserTable.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/admin/pages/UserManagement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/pages/UserManagement.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users/users.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users/users.action.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/users/users.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users/users.reducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +83,7 @@
       <workItem from="1673903883635" duration="7325000" />
       <workItem from="1674286320231" duration="43000" />
       <workItem from="1674286443695" duration="9240000" />
-      <workItem from="1674313748049" duration="13502000" />
+      <workItem from="1674313748049" duration="14373000" />
     </task>
     <task id="LOCAL-00001" summary="config file">
       <created>1673902221371</created>
@@ -139,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674323255609</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix perdita dati store">
+      <created>1674327945009</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1674327945009</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +155,7 @@
     <MESSAGE value="fix role issue" />
     <MESSAGE value="modify user dialog" />
     <MESSAGE value="user dialog handle real modify" />
-    <option name="LAST_COMMIT_MESSAGE" value="user dialog handle real modify" />
+    <MESSAGE value="fix perdita dati store" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix perdita dati store" />
   </component>
 </project>

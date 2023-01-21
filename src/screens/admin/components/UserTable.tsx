@@ -175,9 +175,9 @@ const UserRow = ({
             </TableCell>
             <TableCell align="center">
                 {user.enabled ? (
-                    <Chip label="Disabled"/>
+                        <Chip color="primary" label="Active"/>
                 ) : (
-                    <Chip color="primary" label="Active"/>
+                    <Chip label="Disabled"/>
                 )}
             </TableCell>
             <TableCell
