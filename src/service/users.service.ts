@@ -2,6 +2,8 @@ import {AxiosResponse} from 'axios';
 import {FetchUsersParamsAndBody, PaginatedRequestParamsAndBody} from "../store/users/types";
 import {FetchUsersResponse} from "../models/users.model";
 import {appAxios} from "./axios.config";
+import {UserDialogParams} from "../store/auth/types";
+import {UtenteModel} from "../models/utente.model";
 
 const fetchUsers = async (requestParams: FetchUsersParamsAndBody): Promise<FetchUsersResponse> => {
     console.log('Request [fetchUtenti] params:', requestParams);
@@ -24,20 +26,11 @@ const fetchUsers = async (requestParams: FetchUsersParamsAndBody): Promise<Fetch
     }
     throw new Error('Error during fetchUtenti')
 }
-const alterUser = async (requestParams: FetchUsersParamsAndBody): Promise<FetchUsersResponse> => {
-    console.log('Request [fetchUtenti] params:', requestParams);
-    const params:PaginatedRequestParamsAndBody = {
-        page: requestParams.page,
-        size: requestParams.size ,
-        //FIXED BY DEFAULT
-        sortField: requestParams.sortField,
-        sortDirection: requestParams.sortDirection,
-    }
-    const response: AxiosResponse<FetchUsersResponse> = await appAxios.post(`/api/admin/users/filter`,{
-        ...requestParams.entity
-    },{
-        params
-    });
+const alterUser = async (requestParams: UserDialogParams): Promise<UtenteModel> => {
+    console.log('Request [alterUser] params:', requestParams);
+    const {id} = requestParams;
+
+    const response: AxiosResponse<UtenteModel> = await appAxios.put(`/api/admin/user/${id}`,requestParams);
 
     console.log('Request [fetchUtenti] ', response.data);
     if (response && response.data) {
@@ -72,6 +65,7 @@ const alterUser = async (requestParams: FetchUsersParamsAndBody): Promise<FetchU
 
 export const UsersService = {
     fetchUsers,
+    alterUser
     // createUtente,
     // deleteUtente
 }

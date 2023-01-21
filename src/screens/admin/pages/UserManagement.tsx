@@ -1,4 +1,4 @@
- import React from "react";
+ import React, {useEffect} from "react";
 import {useState} from "react";
 import {UtenteModel} from "../../../models/utente.model";
 import UserTable from "../components/UserTable";
@@ -6,6 +6,7 @@ import {useAppDispatch, useAppSelector} from "../../../store/store.config";
 import {UsersActions} from "../../../store/users/users.action";
 import {UsersTableAction} from "../../../store/users/usersTable.action";
  import UserDialog from "../components/UserDialog";
+ import {UsersPaginatedState} from "../../../store/users/types";
 
 const UserManagement = () => {
 
@@ -16,64 +17,15 @@ const UserManagement = () => {
     const [userUpdated, setUserUpdated] = useState<UtenteModel | undefined>(undefined);
     const dispatch = useAppDispatch()
 
-    // const { addUser, isAdding } = useAddUser();
-    // const { deleteUsers, isDeleting } = useDeleteUsers();
-    // const { isUpdating, updateUser } = useUpdateUser();
     const processing = false;
     const [loading, setLoading] = useState(false)
+    const [usersPaginatedState, setUsersPaginatedState] = useState<UsersPaginatedState>();
     const {usersPaginated} = useAppSelector(state => state.usersReducer)
 
 
-    const handleAddUser = async (user: Partial<UtenteModel>) => {
-        // addUser(user as User)
-        //   .then(() => {
-        //     snackbar.success(
-        //       t("userManagement.notifications.addSuccess", {
-        //         user: `${user.firstName} ${user.lastName}`,
-        //       })
-        //     );
-        //     setOpenUserDialog(false);
-        //   })
-        //   .catch(() => {
-        //     snackbar.error(t("common.errors.unexpected.subTitle"));
-        //   });
-    };
-
-    const handleDeleteUsers = async () => {
-        // deleteUsers(userDeleted)
-        //   .then(() => {
-        //     snackbar.success(t("userManagement.notifications.deleteSuccess"));
-        //     setSelected([]);
-        //     setUserDeleted([]);
-        //     setOpenConfirmDeleteDialog(false);
-        //   })
-        //   .catch(() => {
-        //     snackbar.error(t("common.errors.unexpected.subTitle"));
-        //   });
-    };
-
-    const handleUpdateUser = async (user: UtenteModel) => {
-        // updateUser(user)
-        //   .then(() => {
-        //     snackbar.success(
-        //       t("userManagement.notifications.updateSuccess", {
-        //         user: `${user.firstName} ${user.lastName}`,
-        //       })
-        //     );
-        //     setOpenUserDialog(false);
-        //   })
-        //   .catch(() => {
-        //     snackbar.error(t("common.errors.unexpected.subTitle"));
-        //   });
-    };
-
-    const handleCancelSelected = () => {
-        setSelected([]);
-    };
-
-    const handleCloseConfirmDeleteDialog = () => {
-        setOpenConfirmDeleteDialog(false);
-    };
+    useEffect(() => {
+        setUsersPaginatedState(usersPaginated);
+    }, [usersPaginatedState]);
 
     const handleCloseUserDialog = () => {
         setUserUpdated(undefined);
@@ -133,7 +85,7 @@ const UserManagement = () => {
                 fetchData={fetchData}
                 processing={processing}
                 loading={loading}
-                users={usersPaginated?.data}
+                users={usersPaginatedState?.data}
                 totalPages={usersPaginated?.totalPages}
                 pageIndex={usersPaginated.pageIndex}
                 pageSize={usersPaginated.pageSize}

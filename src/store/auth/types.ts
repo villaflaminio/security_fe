@@ -41,11 +41,11 @@ export interface SignupParams {
     confirmPassword: string
 }
 export interface UserDialogParams {
+    id?: number
     email: string
     name: string
-    role : string
-    disabled : boolean
-
+    roles : string[]
+    enabled : boolean
 }
 
 

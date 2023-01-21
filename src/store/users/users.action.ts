@@ -8,6 +8,7 @@ import {AxiosError} from "axios";
 import {UtenteModel} from "../../models/utente.model";
 import {FetchUsersResponse} from "../../models/users.model";
 import {UsersService} from "../../service/users.service";
+import {UserDialogParams} from "../auth/types";
 
 export const enum USERS_ACTION {
     FETCH_UTENTI = 'FETCH_UTENTI',
@@ -32,13 +33,12 @@ const fetchUsersAction = createAsyncThunk<FetchUsersResponse,FetchUsersParamsAnd
         throw e;
     }
 });
-
-const alterUserAction = createAsyncThunk<FetchUsersResponse,FetchUsersParamsAndBody>(USERS_ACTION.FETCH_UTENTI, async (params,thunkAPI) => {
+const alterUserAction = createAsyncThunk<boolean,UserDialogParams>(USERS_ACTION.FETCH_UTENTI, async (params,thunkAPI) => {
     try {
-        return await UsersService.alterUser(params);
+       const ret =   await UsersService.alterUser(params);
+       return true
     } catch (e: any) {
         console.log('[ERROR] fetchUtentiAction',e);
-
         thunkAPI.dispatch(uiManagerActions.showToast({
             title: 'Si è verificato un errore',
             description: 'Non siamo riusciti ad ottenere i dati degli utenti',
@@ -48,8 +48,9 @@ const alterUserAction = createAsyncThunk<FetchUsersResponse,FetchUsersParamsAndB
 
         throw e;
     }
-}
+});
 
 export const UsersActions = {
-    fetchUsersAction
+    fetchUsersAction,
+    alterUserAction,
 }
