@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="626e44e2-ac97-4e5b-8b80-0f6ef595480d" name="Changes" comment="modify user dialog">
+    <list default="true" id="626e44e2-ac97-4e5b-8b80-0f6ef595480d" name="Changes" comment="user dialog handle real modify">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/admin/components/UserDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/components/UserDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/admin/components/AdminDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/components/AdminDrawer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/admin/components/UserTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/components/UserTable.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/admin/pages/UserManagement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/pages/UserManagement.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/users.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/auth/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/users/users.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users/users.action.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/users/users.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/users/users.reducer.ts" afterDir="false" />
     </list>
@@ -89,7 +88,7 @@
       <workItem from="1673903883635" duration="7325000" />
       <workItem from="1674286320231" duration="43000" />
       <workItem from="1674286443695" duration="9240000" />
-      <workItem from="1674313748049" duration="9448000" />
+      <workItem from="1674313748049" duration="13502000" />
     </task>
     <task id="LOCAL-00001" summary="config file">
       <created>1673902221371</created>
@@ -133,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674299941187</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="user dialog handle real modify">
+      <created>1674323255609</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1674323255609</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,18 +152,7 @@
     <MESSAGE value="drawer role not work" />
     <MESSAGE value="fix role issue" />
     <MESSAGE value="modify user dialog" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify user dialog" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/screens/admin/components/UserDialog.tsx</url>
-          <line>51</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="user dialog handle real modify" />
+    <option name="LAST_COMMIT_MESSAGE" value="user dialog handle real modify" />
   </component>
 </project>

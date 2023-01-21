@@ -257,13 +257,17 @@ const UserTable = ({
                        processing,
                        selected,
                        totalElements,
-                       totalPages,
                        users = [],
                    }: UserTableProps) => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [init, setInit] = useState(false);
 
+    useEffect(() => {
+            backEndMappedFetchData(0, pageSize).then(() => {
+                setInit(true);
+            });
+    }, []);
 
     useEffect(() => {
         if (!loading && !init) {
@@ -275,7 +279,6 @@ const UserTable = ({
     const backEndMappedFetchData = async (pageNumber: number, pageSize: number) => {
         setPageIndex(pageNumber);
         let entity = {}
-
         await fetchData(pageNumber, pageSize, entity, "ASC", "");
     }
 

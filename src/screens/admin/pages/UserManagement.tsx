@@ -19,13 +19,7 @@ const UserManagement = () => {
 
     const processing = false;
     const [loading, setLoading] = useState(false)
-    const [usersPaginatedState, setUsersPaginatedState] = useState<UsersPaginatedState>();
     const {usersPaginated} = useAppSelector(state => state.usersReducer)
-
-
-    useEffect(() => {
-        setUsersPaginatedState(usersPaginated);
-    }, [usersPaginatedState]);
 
     const handleCloseUserDialog = () => {
         setUserUpdated(undefined);
@@ -85,7 +79,7 @@ const UserManagement = () => {
                 fetchData={fetchData}
                 processing={processing}
                 loading={loading}
-                users={usersPaginatedState?.data}
+                users={usersPaginated?.data}
                 totalPages={usersPaginated?.totalPages}
                 pageIndex={usersPaginated.pageIndex}
                 pageSize={usersPaginated.pageSize}

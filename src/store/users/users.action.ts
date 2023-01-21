@@ -33,10 +33,20 @@ const fetchUsersAction = createAsyncThunk<FetchUsersResponse,FetchUsersParamsAnd
         throw e;
     }
 });
-const alterUserAction = createAsyncThunk<boolean,UserDialogParams>(USERS_ACTION.FETCH_UTENTI, async (params,thunkAPI) => {
+const alterUserAction = createAsyncThunk<FetchUsersResponse,UserDialogParams>(USERS_ACTION.FETCH_UTENTI, async (params,thunkAPI) => {
     try {
        const ret =   await UsersService.alterUser(params);
-       return true
+        let entity = {}
+
+        const fetchParams:FetchUsersParamsAndBody = {
+              page: 0,
+                size: 5,
+                sortDirection: 'ASC',
+                entity: entity,
+                sortField: "",
+       }
+        return await UsersService.fetchUsers(fetchParams);
+
     } catch (e: any) {
         console.log('[ERROR] fetchUtentiAction',e);
         thunkAPI.dispatch(uiManagerActions.showToast({
