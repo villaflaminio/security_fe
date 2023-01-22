@@ -23,8 +23,6 @@ function App() {
                             <Route {...AdminRoutes.USERMANAGEMENT}/>
                             <Route {...AdminRoutes.NOT_FOUND}/>
                             <Route {...AdminRoutes.PROFILE}/>
-                            <Route {...AdminRoutes.PASSWORD}/>
-                            <Route {...AdminRoutes.INFORMATION}/>
                         </Route>
                         <Route {...AppRoutes.NOT_FOUND}/>
                         <Route {...AppRoutes.OAUT2_REDIRECT}/>

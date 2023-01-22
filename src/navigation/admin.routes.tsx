@@ -7,14 +7,12 @@ import UserManagement from "../screens/admin/pages/UserManagement";
 import ProfileAdmin from "../screens/admin/pages/Profile";
 
 
-export type AdminRoutes = 'DASHBOARD' | 'USERMANAGEMENT' | 'NOT_FOUND' | 'PROFILE' | 'PASSWORD' | 'INFORMATION';
+export type AdminRoutes = 'DASHBOARD' | 'USERMANAGEMENT' | 'NOT_FOUND' | 'PROFILE' ;
 
 export const AdminPaths: Record<AdminRoutes, String> = {
     DASHBOARD: 'dashboard',
     USERMANAGEMENT: 'user-management',
-    INFORMATION: 'information',
     PROFILE: 'profile',
-    PASSWORD: 'password',
     NOT_FOUND: '*',
 }
 
@@ -35,14 +33,5 @@ export const AdminRoutes: Record<AdminRoutes, PathRouteProps> = {
         path: AdminPaths.PROFILE.toString(),
         element: <ProfileAdmin/>
     },
-    PASSWORD: {
-        path: AdminPaths.PASSWORD.toString(),
-        element: <ChangePasswordHandler/>
-    },
-    INFORMATION: {
-        path: AdminPaths.INFORMATION.toString(),
-        element: <ChangePasswordHandler/>
-    }
-
 
 }
