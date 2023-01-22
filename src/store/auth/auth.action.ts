@@ -4,11 +4,15 @@ import {
     AuthenticateWithTokenResponse,
     ChangePasswordParams,
     LoginAuthenticateResponse,
-    LoginParams, SignupParams
+    LoginParams, SignupParams, UserDialogParams
 } from "./types";
 import {uiManagerActions} from "../uiManager/uiManager.action";
 import {AxiosError} from "axios";
 import {UtenteModel} from "../../models/utente.model";
+import {FetchUsersResponse} from "../../models/users.model";
+import {UsersService} from "../../service/users.service";
+import {FetchUsersParamsAndBody} from "../users/types";
+import {USERS_ACTION} from "../users/users.action";
 
 export const enum AUTH_ACTION {
     REFRESH_AUTH = 'REFRESH_AUTH',
@@ -102,7 +106,21 @@ const loginWithOAuth2 = createAsyncThunk(AUTH_ACTION.LOGIN_WITH_OAUTH2, async (t
         throw e;
     }
 });
+const alterUserAction = createAsyncThunk<UtenteModel,UserDialogParams>(USERS_ACTION.FETCH_UTENTI, async (params,thunkAPI) => {
+    try {
+        return await UsersService.alterUser(params);
+    } catch (e: any) {
+        console.log('[ERROR] fetchUtentiAction',e);
+        thunkAPI.dispatch(uiManagerActions.showToast({
+            title: 'Si è verificato un errore',
+            description: 'Non siamo riusciti ad ottenere i dati degli utenti',
+            duration: 3000,
+            status: 'error'
+        }));
 
+        throw e;
+    }
+});
 // const sendResetPasswordAction = createAsyncThunk<boolean, string>(AUTH_ACTION.SEND_RESET_PASSWORD, async (username, thunkAPI) : Promise<boolean> => {
 //     try {
 //         await AuthService.sendResetPassword(username);
@@ -166,5 +184,6 @@ export const AuthActions = {
     loginWithOAuth2,
     signUp,
     changePasswordAction,
-    getJwtFromResetPasswordTokenAction
+    getJwtFromResetPasswordTokenAction,
+    alterUserAction
 }

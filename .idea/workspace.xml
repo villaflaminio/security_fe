@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="626e44e2-ac97-4e5b-8b80-0f6ef595480d" name="Changes" comment="fixare la navigazione tra tabs">
+    <list default="true" id="626e44e2-ac97-4e5b-8b80-0f6ef595480d" name="Changes" comment="user profile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/admin/pages/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/admin/pages/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/auth/auth.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth/auth.action.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/auth/auth.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/auth/auth.reducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +88,7 @@
       <workItem from="1674286320231" duration="43000" />
       <workItem from="1674286443695" duration="9240000" />
       <workItem from="1674313748049" duration="18928000" />
-      <workItem from="1674396254383" duration="5040000" />
+      <workItem from="1674396254383" duration="6189000" />
     </task>
     <task id="LOCAL-00001" summary="config file">
       <created>1673902221371</created>
@@ -166,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674340085975</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="user profile">
+      <created>1674401529711</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1674401529711</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +192,19 @@
     <MESSAGE value="user enable" />
     <MESSAGE value="profile page non funzionante" />
     <MESSAGE value="fixare la navigazione tra tabs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixare la navigazione tra tabs" />
+    <MESSAGE value="user profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="user profile" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/store/auth/auth.action.ts</url>
+          <line>110</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

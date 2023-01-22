@@ -21,6 +21,7 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {UserDialogParams} from "../../../store/auth/types";
 import {UsersActions} from "../../../store/users/users.action";
 import {Spacer} from "@chakra-ui/react";
+import {AuthActions} from "../../../store/auth/auth.action";
 
 const ProfileAdmin = () => {
     const {user} = useAppSelector(state => state.authReducer);
@@ -37,7 +38,7 @@ const ProfileAdmin = () => {
         setProcessing(true)
         params.id = user?.id
         if (!params.roles) params.roles = []
-        await dispatch(UsersActions.alterUserAction(params)).then(async (result) => {
+        await dispatch(AuthActions.alterUserAction(params)).then(async (result) => {
             if (!result) {
                 console.log('errore durante la registrazione');
             }
@@ -84,7 +85,7 @@ const ProfileAdmin = () => {
                             Roles
                         </Typography>
                         {user?.roles.map((role) => (
-                            <Typography variant="body2">
+                            <Typography  variant="body2">
                                 {role.name}
                             </Typography>
                         ))}
